@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="ko"><head><meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- 이진숙 프로파일링 연구소 제작 안내 v1 (templates/guide.html에서, 2026-10-24).
+     사실 출처: clients/lee-jinsook/README.md, 진단-2026-10-24.md, 벤치마킹/필수-요소표.md. 금액·일정·관리 범위는 미정이라 넣지 않음.
+     no-tel: 소장님께 드리는 안내라 손님용 전화 링크가 없다. -->
+
+<meta name="check" content="no-tel">
+<title>이진숙 프로파일링 연구소 홈페이지 제작 안내</title>
+<meta name="description" content="이진숙 소장님께 드리는 홈페이지 제작 안내: 한눈에 요약과 정보 입력.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이진숙 프로파일링 연구소 홈페이지 제작 안내">
+<meta property="og:description" content="한눈에 요약, 그리고 칸만 채워 보내시면 되는 정보 입력">
+<style>
+:root{--paper:#F5F4F1;--surface:#FFFFFF;--ink:#1A1D22;--muted:#4D545E;--line:#D8D5CE;--band:#20252D;--band-ink:#F4F5F7;--band-muted:#BCC2CB;--mark:#2F5D9E;--call:#B4471C;--glow:#FFAE7A;color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--paper:#121418;--surface:#1B1F25;--ink:#E8EAED;--muted:#A9B0BA;--line:#2E343D;--band:#1A1E24;--mark:#8FB2EA;--call:#C9551F;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+img{max-width:100%;height:auto}
+.wrap{max-width:46rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+a{color:var(--mark)}
+.blank{display:inline-block;min-width:3.5em;background:rgba(240,140,40,.22);outline:1px dashed #E08A1E;outline-offset:-1px;padding:0 .4em;border-radius:2px}
+.top{background:var(--band);color:var(--band-ink)}
+.top .wrap{padding-block:32px}
+.top .meta{margin:0;color:var(--band-muted);font-size:.9375rem}
+h1{font-size:clamp(1.625rem,1.3rem + 1.6vw,2.25rem);line-height:1.25;margin:6px 0 16px;letter-spacing:-.015em}
+.sum{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sum li{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.16)}
+.sum b{color:var(--glow);font-size:.9375rem}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 18px;border-radius:6px;font-weight:700;text-decoration:none;font-family:inherit;font-size:1rem;cursor:pointer;border:2px solid transparent}
+.btn-p{background:var(--call);color:#fff}
+.btn-s{border-color:currentColor;color:var(--band-ink);background:transparent}
+main .wrap{padding-block:8px 64px}
+section{padding-top:40px}
+h2{font-size:1.375rem;line-height:1.35;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 20px}
+fieldset{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:16px;margin:0 0 16px;min-width:0}
+legend{font-weight:700;padding:0 6px;font-size:1.0625rem}
+.why{margin:0 0 4px;color:var(--muted);font-size:.9375rem;line-height:1.5}
+.f{display:flex;flex-direction:column;gap:6px;margin-top:12px;min-width:0}
+.f>label,.f>span{font-size:.9375rem;font-weight:600}
+.opt{font-weight:400;color:var(--muted)}
+input[type=text],input[type=date],textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:4px;min-height:48px;padding:10px 12px;width:100%}
+textarea{min-height:84px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(180,71,28,.25)}
+::placeholder{color:var(--muted);opacity:.85}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;width:100%;height:100%;cursor:pointer}
+.seg span{display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border:1.5px solid var(--line);border-radius:999px;font-size:.9375rem;background:var(--paper)}
+.seg input:checked+span{background:var(--ink);color:var(--surface);border-color:var(--ink);font-weight:600}
+.seg input:focus-visible+span{outline:3px solid var(--glow);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px}
+.chk{display:flex;align-items:center;gap:10px;min-height:44px;font-size:.9375rem}
+.chk input{width:22px;height:22px;accent-color:var(--call)}
+.out{background:var(--band);color:var(--band-ink);border-radius:8px;padding:16px;margin-top:8px}
+.out h2{color:var(--band-ink)}
+.msg{white-space:pre-wrap;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:4px;padding:12px;margin:12px 0;font:inherit;font-size:.9375rem;min-height:120px}
+.out p{margin:0;color:var(--band-muted);font-size:.9375rem}
+.copied{color:var(--glow)!important;min-height:1.5em;margin-top:8px!important}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:16px 36px 16px 0;font-weight:700;list-style:none;position:relative;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:12px;font-size:1.5rem;color:var(--muted)}
+details[open] summary::after{content:"−"}
+details .in{padding-bottom:16px}
+details p{margin:0 0 12px}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:.9375rem;background:var(--surface)}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--paper)}
+ol,ul{padding-left:1.3em;margin:0 0 12px}
+li{margin-bottom:6px}
+footer{color:var(--muted);font-size:.9375rem;padding-block:24px}
+</style>
+</head><body>
+<header class="top">
+  <div class="wrap">
+    <p class="meta">2026년 10월 24일 · 홈페이지 제작팀(고성식·장남덕·김진호)</p>
+    <h1><span data-biz="">이진숙 프로파일링 연구소</span> 이진숙 소장님, 한눈에 정리했습니다</h1>
+    <ul class="sum">
+      <li><b>목표</b><span>의뢰를 고민하는 분(사건 당사자·변호인, 기관·학교 담당자)이 소장님을 믿고 바로 연락하시게 만드는 것입니다.</span></li>
+      <li><b>약속</b><span>확인된 사실만 씁니다. 지금 시안에는 공개 자료로 확인된 저서 2권과 「유 퀴즈 온 더 블럭」 출연만 넣었습니다.</span></li>
+      <li><b>빈자리</b><span>경찰 경력, 사건 수, 학위·자격, 수상은 아직 확인을 못 해 주황색 빈자리로 두었습니다. 알려 주시는 대로 채웁니다.</span></li>
+      <li><b>사진</b><span>지금 사진은 모두 연출 이미지입니다. 소장님 사진과 연구소 사진을 받으면 바꿉니다.</span></li>
+      <li><b>하실 일</b><span>아래 칸을 아시는 만큼 채워 보내 주시고, 시안을 보고 "좋다 / 고쳐 달라"만 말씀해 주세요.</span></li>
+    </ul>
+    <div class="btns">
+      <a class="btn btn-p" href="#form">정보 입력하기</a>
+      <a class="btn btn-s" href="../v1/">시안 보기</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section id="form" aria-labelledby="form-h">
+      <h2 id="form-h">소장님께 부탁드릴 정보</h2>
+      <p class="lead">급한 것부터 순서대로입니다. 모르시거나 공개하기 어려운 칸은 비워 두세요. 채우시면 아래에 문자가 만들어지고, 복사해서 카톡으로 보내 주시면 됩니다.</p>
+      <form id="f" novalidate="">
+        <fieldset>
+          <legend>1. 연구소 기본 정보와 연락처</legend>
+          <p class="why">의뢰인이 가장 먼저 찾는 정보입니다. 홈페이지 모든 화면의 문의가 이 연락처로 이어집니다.</p>
+          <div class="f"><label for="bizname">정확한 상호 <span class="opt">(예: 이진숙 프로파일링 연구소 / 프로파일링연구소 門)</span></label><input type="text" id="bizname" data-k="정확한 상호"></div>
+          <div class="f"><span id="bizreg-l">사업자등록을 하셨나요?</span><div class="seg" role="radiogroup" aria-labelledby="bizreg-l">
+            <label><input type="radio" name="사업자등록" value="했음"><span>했어요</span></label>
+            <label><input type="radio" name="사업자등록" value="준비 중"><span>준비 중</span></label>
+            <label><input type="radio" name="사업자등록" value="아직 안 함"><span>아직이요</span></label></div></div>
+          <div class="f"><label for="bizno">사업자등록번호 <span class="opt">(있으면)</span></label><input type="text" id="bizno" inputmode="numeric" placeholder="000-00-00000" data-k="사업자등록번호"></div>
+          <div class="grid">
+            <div class="f"><label for="tel">홈페이지에 올릴 전화번호</label><input type="text" id="tel" inputmode="tel" placeholder="010-0000-0000" data-k="전화"></div>
+            <div class="f"><label for="mail">홈페이지에 올릴 이메일</label><input type="text" id="mail" inputmode="email" data-k="이메일"></div>
+          </div>
+          <div class="f"><label for="hours">상담 가능한 시간 <span class="opt">(선택)</span></label><input type="text" id="hours" placeholder="예: 평일 10~18시" data-k="상담 시간"></div>
+          <div class="f"><label for="addr">연구소 주소</label><input type="text" id="addr" data-k="주소"></div>
+          <div class="f"><span id="addrpub-l">주소를 홈페이지에 어디까지 보여도 될까요?</span><div class="seg" role="radiogroup" aria-labelledby="addrpub-l">
+            <label><input type="radio" name="주소 공개" value="전체 공개"><span>전체 공개</span></label>
+            <label><input type="radio" name="주소 공개" value="시·구까지만"><span>시·구까지만</span></label>
+            <label><input type="radio" name="주소 공개" value="비공개(상담 때 안내)"><span>비공개</span></label></div></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. 경찰 경력</legend>
+          <p class="why">기사마다 입직 연도(2005년·2006년)와 표현이 달라 확인이 필요합니다. 적어 주신 대로 "연도 – 기관 – 직위" 순서로 정리합니다.</p>
+          <div class="grid">
+            <div class="f"><label for="pyear">입직 연도·월</label><input type="text" id="pyear" placeholder="예: 2005년 7월" data-k="입직 연도"></div>
+            <div class="f"><label for="pgen">특채 기수와 정식 명칭</label><input type="text" id="pgen" placeholder="예: 범죄분석관 특채 ○기" data-k="특채 기수"></div>
+          </div>
+          <div class="f"><label for="plast">마지막(또는 현재) 소속과 계급</label><input type="text" id="plast" data-k="마지막 소속·계급"></div>
+          <div class="f"><span id="pret-l">지금 경찰에 재직 중이신가요?</span><div class="seg" role="radiogroup" aria-labelledby="pret-l">
+            <label><input type="radio" name="재직 여부" value="퇴직함"><span>퇴직했어요</span></label>
+            <label><input type="radio" name="재직 여부" value="재직 중"><span>재직 중이에요</span></label></div></div>
+          <div class="f"><label for="pretd">퇴직 연도·월 <span class="opt">(퇴직하셨으면)</span></label><input type="text" id="pretd" data-k="퇴직 연도"></div>
+          <label class="chk"><input type="checkbox" value="경력증명서 사본을 보내겠음">경력증명서 사본을 카톡으로 보낼게요</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. 사건 참여 건수의 기준</legend>
+          <p class="why">자료마다 "보고서 500건", "사건 500여 건", "범죄자 500여 명"으로 다르게 나옵니다. 무엇을 센 숫자인지 알아야 정확하게 쓸 수 있습니다.</p>
+          <div class="f"><span id="cnt-l">무엇을 센 숫자인가요?</span><div class="seg" role="radiogroup" aria-labelledby="cnt-l">
+            <label><input type="radio" name="건수 기준" value="작성한 보고서 수"><span>보고서 수</span></label>
+            <label><input type="radio" name="건수 기준" value="참여한 사건 수"><span>사건 수</span></label>
+            <label><input type="radio" name="건수 기준" value="면담한 사람 수"><span>면담 인원</span></label></div></div>
+          <div class="grid">
+            <div class="f"><label for="cntn">건수</label><input type="text" id="cntn" placeholder="예: 약 ○○○건" data-k="건수"></div>
+            <div class="f"><label for="cntp">센 기간</label><input type="text" id="cntp" placeholder="예: 2006~2024년" data-k="센 기간"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. 법정 증언·증거 채택 사례 <span class="opt">(없으면 비워 두세요)</span></legend>
+          <p class="why">공개해도 되는 것만 적어 주세요. 비워 두시면 홈페이지에서 이 내용은 빼겠습니다. 의뢰인이나 피해자를 알아볼 수 있는 내용은 적지 말아 주세요.</p>
+          <div class="f"><label for="court">연도, 법정 증언인지 보고서 채택인지, 공개 가능한 근거(판결 번호 등)</label><textarea id="court" data-k="법정 증언·증거 채택"></textarea></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. 학위·자격</legend>
+          <p class="why">기사마다 학위 이름이 조금씩 달라(교육사회학 박사, 심리학·사회교육학 석·박사 등) 정확한 이름이 필요합니다.</p>
+          <div class="f"><label for="deg">학위 (학교·전공·학위명·취득 연도)</label><textarea id="deg" placeholder="예: ○○대학교 대학원 ○○학 박사, 20○○년" data-k="학위"></textarea></div>
+          <div class="f"><label for="cert">자격 (자격 이름·발급 기관·연도)</label><textarea id="cert" placeholder="예: ○○ 자격, ○○학회, 20○○년" data-k="자격"></textarea></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>6. 수상 <span class="opt">(있으면)</span></legend>
+          <p class="why">상 이름·주신 단체·연도를 상장에 적힌 그대로 적어 주세요. 상장 사진을 보내 주시면 더 정확합니다.</p>
+          <div class="f"><label for="award">상 이름, 주신 단체, 연도</label><input type="text" id="award" data-k="수상"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>7. 업무별 기본 비용과 작성 기간</legend>
+          <p class="why">"문의하세요"만 있으면 의뢰를 망설이는 분이 많습니다. 대략적인 기준이나 정하는 방식만 있어도 됩니다. 공개하실지는 따로 고르실 수 있습니다.</p>
+          <div class="f"><label for="c1">프로파일링 보고서</label><input type="text" id="c1" placeholder="비용 기준, 작성 기간" data-k="프로파일링 보고서 비용·기간"></div>
+          <div class="f"><label for="c2">진술분석</label><input type="text" id="c2" placeholder="비용 기준, 작성 기간" data-k="진술분석 비용·기간"></div>
+          <div class="f"><label for="c3">심리상담</label><input type="text" id="c3" placeholder="1회 비용, 1회 시간" data-k="심리상담 비용·시간"></div>
+          <div class="f"><label for="c4">교육·강연</label><input type="text" id="c4" placeholder="강연료 기준, 시간" data-k="교육·강연 비용·시간"></div>
+          <div class="f"><span id="cpub-l">비용을 홈페이지에 적어도 될까요?</span><div class="seg" role="radiogroup" aria-labelledby="cpub-l">
+            <label><input type="radio" name="비용 공개" value="적어도 됨"><span>적어도 돼요</span></label>
+            <label><input type="radio" name="비용 공개" value="정하는 방식만"><span>정하는 방식만</span></label>
+            <label><input type="radio" name="비용 공개" value="상담 후 안내"><span>상담 후 안내</span></label></div></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>8. 맡지 않는 일, 이해충돌 원칙</legend>
+          <p class="why">맡지 않는 일을 미리 밝히면 의뢰인이 더 믿습니다. 예: 결론을 정해 두고 써 달라는 의뢰, 같은 사건의 상대방 의뢰 등 — 소장님 원칙대로 적어 주세요.</p>
+          <div class="f"><label for="nojob">맡지 않는 일</label><textarea id="nojob" data-k="맡지 않는 일"></textarea></div>
+          <div class="f"><label for="coi">이해충돌·비밀유지 원칙 <span class="opt">(선택)</span></label><textarea id="coi" data-k="이해충돌·비밀유지 원칙"></textarea></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>9. 프로필 사진, 연구소 공간 사진</legend>
+          <p class="why">지금 시안의 사진은 모두 연출 이미지입니다. 소장님 실제 사진이 가장 큰 믿음을 줍니다. 휴대폰으로 찍어 보내셔도 됩니다.</p>
+          <div class="seg" role="radiogroup" aria-label="사진 보내실 방법">
+            <label><input type="radio" name="사진" value="카톡으로 보내겠음"><span>카톡으로 보낼게요</span></label>
+            <label><input type="radio" name="사진" value="촬영하러 와 주세요"><span>찍으러 와 주세요</span></label>
+            <label><input type="radio" name="사진" value="아직 없음"><span>아직 없어요</span></label></div>
+          <div class="f"><label for="shoot">찍으러 오면 좋은 날 <span class="opt">(선택)</span></label><input type="date" id="shoot" data-k="촬영 희망일"></div>
+          <p class="why" style="margin-top:12px">있으면 좋은 사진: 소장님 얼굴이 보이는 프로필 · 상담하시는 방 · 책상과 책장 · 강연 중인 모습(청중 얼굴이 안 나오게) · 저서 표지</p>
+          <p class="why">휴대폰으로 찍으실 때: 창을 앞에 두고 밝은 낮에, 가로·세로 한 장씩, 원본 크기로 보내 주세요. 기존 프로필 사진은 찍은 분께 홈페이지 사용을 허락받은 것이면 됩니다.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>10. 門 로고와 슬로건</legend>
+          <p class="why">이전 홈페이지 안(案)에 있던 門 로고와 "마음의 근육을 키워, 더 넓은 세상으로 나가는 門" 문구를 계속 쓰실지 여쭙니다. 소장님 말씀이면 그대로 살리겠습니다.</p>
+          <div class="f"><span id="logo-l">門 로고</span><div class="seg" role="radiogroup" aria-labelledby="logo-l">
+            <label><input type="radio" name="門 로고" value="씀"><span>써요</span></label>
+            <label><input type="radio" name="門 로고" value="안 씀"><span>안 써요</span></label>
+            <label><input type="radio" name="門 로고" value="다시 이야기"><span>이야기해 봐요</span></label></div></div>
+          <div class="f"><span id="slo-l">슬로건</span><div class="seg" role="radiogroup" aria-labelledby="slo-l">
+            <label><input type="radio" name="슬로건" value="그대로 씀"><span>그대로 써요</span></label>
+            <label><input type="radio" name="슬로건" value="고쳐서 씀"><span>고쳐서 써요</span></label>
+            <label><input type="radio" name="슬로건" value="안 씀"><span>안 써요</span></label></div></div>
+          <div class="f"><label for="slogan">고치실 문구, 또는 평소 의뢰인께 하시는 말 <span class="opt">(선택)</span></label><input type="text" id="slogan" data-k="문구"></div>
+          <label class="chk"><input type="checkbox" value="로고 원본 파일을 보내겠음">로고 원본 파일을 카톡으로 보낼게요</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>11. 블로그·유튜브·인스타그램</legend>
+          <p class="why">저희가 찾아본 범위에서는 소장님 본인 채널을 찾지 못했습니다. 있으시면 홈페이지에 연결하겠습니다.</p>
+          <div class="f"><label for="blog">블로그 주소</label><input type="text" id="blog" inputmode="url" data-k="블로그"></div>
+          <div class="f"><label for="yt">유튜브 주소</label><input type="text" id="yt" inputmode="url" data-k="유튜브"></div>
+          <div class="f"><label for="insta">인스타그램 주소</label><input type="text" id="insta" inputmode="url" data-k="인스타그램"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>12. 그 밖에</legend>
+          <div class="f"><label for="never">홈페이지에 쓰면 안 되는 것 <span class="opt">(선택)</span></label><input type="text" id="never" data-k="쓰면 안 되는 것"></div>
+          <div class="f"><label for="etc">시안에서 고칠 곳이나 하고 싶은 말씀</label><textarea id="etc" data-k="하실 말씀"></textarea></div>
+        </fieldset>
+      </form>
+
+      <div class="out" aria-labelledby="out-h">
+        <h2 id="out-h">보내실 내용</h2>
+        <pre class="msg" id="msg" aria-live="polite"></pre>
+        <button type="button" class="btn btn-p" id="copy">복사하기</button>
+        <p class="copied" id="copied" role="status"></p>
+        <p>복사한 내용을 저희 단톡방(고성식·장남덕·김진호)에 보내 주세요. 입력하신 내용은 이 페이지에 저장되지 않고 어디에도 보내지지 않습니다. 계좌번호나 의뢰인 정보처럼 민감한 내용은 적지 않으셔도 됩니다. 증명서·상장은 사진으로 따로 보내 주시면 됩니다.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="more-h">
+      <h2 id="more-h">자세한 설명 (필요할 때만 펼쳐 보세요)</h2>
+      <details>
+        <summary>저희가 지키는 것</summary>
+        <div class="in"><ol>
+          <li>지어낸 수치·후기·사례는 넣지 않습니다. 소장님께 확인받은 것만 씁니다.</li>
+          <li>결과를 보장하는 표현은 쓰지 않습니다. 예를 들어 "증거로 채택됩니다", "재판에서 유리해집니다", "거짓말을 가려냅니다" 같은 말은 쓰지 않고, 보고서가 제공 자료에 근거한 전문가 의견이라는 점을 밝힙니다.</li>
+          <li>확인 안 된 경력은 빈자리로 둡니다. 이전 홈페이지 안(案)의 "1기", "보고서 500건", "법정 증거 채택 다수", 수상·자격 문구는 저희가 찾은 공개 자료에서 근거를 찾지 못했거나 자료마다 표현이 달랐습니다. 증빙이나 소장님 확인을 받으면 정확한 표현으로 넣겠습니다.</li>
+          <li>사진 출처를 밝힙니다. 지금 사진은 "연출 이미지"로 표시했고, 소장님 실제 사진으로 바꿉니다.</li>
+          <li>문의 내용은 의뢰인이 사건 세부를 적지 않도록 안내합니다.</li>
+          <li>검색 순위나 문의 수는 약속드릴 수 없습니다.</li>
+        </ol></div>
+      </details>
+      <details>
+        <summary>진행 순서</summary>
+        <div class="in">
+          <div class="tbl"><table>
+            <tbody><tr><th>소장님</th><th>제작팀</th></tr>
+            <tr><td>위 칸 채워 보내기, 시안 보고 "좋다 / 고쳐 달라", 공개 승인</td><td>시안·수정·사진 정리·검수·공개</td></tr>
+          </tbody></table></div>
+          <ol>
+            <li>정보 보내기: 위 칸을 채워 보내 주시면 시안의 빈자리를 채웁니다.</li>
+            <li>수정: 시안을 휴대폰으로 보시고 고칠 곳을 알려 주세요. 캡처에 동그라미를 쳐서 보내셔도 됩니다.</li>
+            <li>확정 후 공개: 소장님이 승인하시기 전에는 누구나 볼 수 있게 올리지 않습니다. 공개할 때 확인 못 한 항목은 빼고 올립니다.</li>
+          </ol>
+        </div>
+      </details>
+      <details>
+        <summary>공개 후 관리</summary>
+        <div class="in">
+          <p>공개 후 관리 범위와 방법은 정해지면 따로 안내드리겠습니다.</p>
+        </div>
+      </details>
+    </section>
+  </div>
+</main>
+<footer><div class="wrap">이진숙 프로파일링 연구소 홈페이지 제작팀 · 2026-10-24</div></footer>
+<script>
+(function(){
+  var f=document.getElementById('f'), msg=document.getElementById('msg');
+  var bizEl=document.querySelector('[data-biz]');
+  var head='['+((bizEl&&bizEl.textContent.trim())||'업체')+' 홈페이지 정보]';
+  function build(){
+    var lines=[head], seen={};
+    [].forEach.call(f.querySelectorAll('input,textarea'),function(el){
+      if(el.type==='radio'){ if(el.checked&&!seen[el.name]){seen[el.name]=1;lines.push(el.name+': '+el.value);} return; }
+      if(el.type==='checkbox'){ if(el.checked) lines.push(el.value); return; }
+      var v=(el.value||'').trim(); if(v) lines.push((el.dataset.k||el.id)+': '+v);
+    });
+    msg.textContent=lines.length>1?lines.join('\n'):head+'\n(위 칸을 채우면 여기에 정리됩니다)';
+  }
+  f.addEventListener('input',build); f.addEventListener('change',build); f.addEventListener('submit',function(e){e.preventDefault()}); build();
+  document.getElementById('copy').addEventListener('click',function(){
+    var t=msg.textContent, out=document.getElementById('copied');
+    var sel=function(){try{var r=document.createRange();r.selectNodeContents(msg);var s=getSelection();s.removeAllRanges();s.addRange(r);}catch(e){}};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){out.textContent='복사했습니다. 카톡에 붙여 넣어 보내 주세요.'},function(){sel();out.textContent='위 내용을 길게 눌러 복사해 주세요.'});}
+    else{sel();out.textContent='위 내용을 길게 눌러 복사해 주세요.';}
+  });
+})();
+</script>
+
+
+</body></html>
