@@ -251,3 +251,7 @@ ol,ul{padding:0;list-style:none}
 .kh-beam i{position:absolute;inset:0;clip-path:polygon(38.7% 0,61.3% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(240,214,160,.26) 0%,rgba(240,214,160,.12) 30%,rgba(240,214,160,.04) 65%,transparent 92%)}
 .kh-halo{position:absolute;pointer-events:none;border-radius:50%;background:radial-gradient(closest-side,rgba(240,214,160,.16),rgba(240,214,160,.05) 60%,transparent)}
 @media(prefers-reduced-motion:reduce){.kh-beam,.kh-halo{display:none}}
+/* 문: 열쇠 구멍이 아치 문(두 짝)의 놋쇠 판에 박혀 있다. 위 반달 창에 초승달(명함 로고) */
+.kh-door{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.kh-star{display:none}
+.kh-ring{opacity:.6}

@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;500&amp;display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="home.css?v=5">
+<link rel="stylesheet" href="home.css?v=9">
 </head><body>
 <a class="skip" href="#main">본문 바로가기</a>
 
@@ -43,6 +43,37 @@
  <div class="kh-stage">
   <div class="kh-view"><img src="img/ref-p42-blinds.jpg" alt="블라인드 너머 창가에 앉은 사람의 실루엣 (참고 이미지)" fetchpriority="high"><span class="kh-shadow" aria-hidden="true"></span><span class="kh-vig" aria-hidden="true"></span></div>
   <canvas class="kh-dust" aria-hidden="true"></canvas>
+  <svg class="kh-door" viewBox="-175 -260 450 1360" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+   <defs>
+    <linearGradient id="dw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2016"></stop><stop offset=".5" stop-color="#21170f"></stop><stop offset="1" stop-color="#120c08"></stop></linearGradient>
+    <pattern id="grain" width="9" height="40" patternUnits="userSpaceOnUse"><rect width="9" height="40" fill="none"></rect><path d="M2 0v40M6.5 0v40" stroke="rgba(0,0,0,.22)" stroke-width=".7"></path><path d="M4.3 0v40" stroke="rgba(255,220,170,.035)" stroke-width=".6"></path></pattern>
+    <radialGradient id="spill" cx="50" cy="90" r="330" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="rgba(240,214,160,.20)"></stop><stop offset=".35" stop-color="rgba(240,214,160,.07)"></stop><stop offset="1" stop-color="rgba(240,214,160,0)"></stop></radialGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8b878"></stop><stop offset=".45" stop-color="#9c7a42"></stop><stop offset="1" stop-color="#5e4524"></stop></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2a2b"></stop><stop offset="1" stop-color="#0e1515"></stop></linearGradient>
+    <clipPath id="leafclip"><path d="M-160 1100V-20A210 210 0 0 1 260 -20V1100Z"></path></clipPath>
+    <mask id="holem" maskUnits="userSpaceOnUse" x="-175" y="-260" width="450" height="1360"><rect x="-175" y="-260" width="450" height="1360" fill="#fff"></rect><path d="M50 8a37 37 0 0 1 21 67.5L84 152H16l13-76.5A37 37 0 0 1 50 8z" fill="#000"></path></mask>
+    <mask id="moonm"><rect x="-175" y="-260" width="450" height="400" fill="#fff"></rect><circle cx="62" cy="-122" r="22" fill="#000"></circle></mask>
+   </defs>
+   <g mask="url(#holem)">
+   <path d="M-175 1100V-20A225 225 0 0 1 275 -20V1100Z" fill="#0d0907"></path>
+   <g clip-path="url(#leafclip)">
+    <rect x="-160" y="-230" width="420" height="1330" fill="url(#dw)"></rect>
+    <rect x="-160" y="-230" width="420" height="1330" fill="url(#grain)"></rect>
+    <path d="M-100 -20A150 150 0 0 1 200 -20Z" fill="url(#glass)" stroke="#120c08" stroke-width="10"></path>
+    <path d="M-100 -20A150 150 0 0 1 200 -20" fill="none" stroke="rgba(255,220,170,.10)" stroke-width="2"></path>
+    <path d="M50 -170V-20M-56 -126L50 -20M156 -126L50 -20" stroke="#120c08" stroke-width="7"></path>
+    <circle cx="50" cy="-112" r="26" fill="#e6cc98" opacity=".85" mask="url(#moonm)"></circle>
+    <g fill="none" stroke-width="3">
+     <rect x="-128" y="270" width="150" height="520" stroke="rgba(0,0,0,.5)"></rect><rect x="-126" y="272" width="150" height="520" stroke="rgba(255,220,170,.09)"></rect>
+     <rect x="78" y="270" width="150" height="520" stroke="rgba(0,0,0,.5)"></rect><rect x="80" y="272" width="150" height="520" stroke="rgba(255,220,170,.09)"></rect>
+    </g>
+    <path d="M50 -230V1100" stroke="#0a0705" stroke-width="5"></path>
+    <rect x="-160" y="-230" width="420" height="1330" fill="url(#spill)"></rect>
+   </g>
+   <path d="M-34 -42H134A14 14 0 0 1 148 -28V188A14 14 0 0 1 134 202H-34A14 14 0 0 1 -48 188V-28A14 14 0 0 1 -34 -42ZM50 8a37 37 0 0 1 21 67.5L84 152H16l13-76.5A37 37 0 0 1 50 8z" fill="url(#brass)" fill-rule="evenodd"></path>
+   <path d="M-30 -32H130A8 8 0 0 1 138 -24V184A8 8 0 0 1 130 192H-30A8 8 0 0 1 -38 184V-24A8 8 0 0 1 -30 -32Z" fill="none" stroke="rgba(60,40,15,.55)" stroke-width="2"></path>
+   <circle cx="50" cy="-18" r="4.5" fill="#5e4524"></circle><circle cx="50" cy="180" r="4.5" fill="#5e4524"></circle></g>
+  </svg>
   <span class="kh-halo" aria-hidden="true"></span><span class="kh-beam" aria-hidden="true"><i></i></span>
   <svg class="kh-ring" viewBox="0 0 100 160" aria-hidden="true"><path d="M50 8a37 37 0 0 1 21 67.5L84 152H16l13-76.5A37 37 0 0 1 50 8z"></path></svg>
   <svg class="kh-star" aria-hidden="true"><use href="#star"></use></svg>
@@ -126,6 +157,6 @@
  <p class="fine">© 이진숙 프로파일링 연구소 門 · 사진은 AI 연출 이미지 또는 참고 이미지이며 실제 인물·공간·사건을 나타내지 않습니다.</p>
 </footer>
 <div class="grain" aria-hidden="true"></div>
-<script src="home.js?v=5"></script>
+<script src="home.js?v=11"></script>
 
 </body></html>
