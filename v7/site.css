@@ -638,3 +638,12 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
  .hd-photo{height:clamp(200px,calc(100svh - 66px - 380px),400px)}
  .hd-of{font-size:17px}
 }
+/* 첫 화면 단순하게 (10-25): 사진 + 이진숙의 행선지 + 행복한 선택, 지금 만 */
+.hd-copy{justify-content:center}
+@media(max-width:900px){
+ .hd-photo{height:calc(100svh - 66px - 240px);min-height:300px;max-height:600px}
+ .hd-copy{margin-top:-30px;padding-bottom:40px;justify-content:flex-start}
+ .hd-of{font-size:20px}
+ .hero-dest .hd-title{font-size:96px}
+ .hd-slogan{margin-top:10px;font-size:18px}
+}
