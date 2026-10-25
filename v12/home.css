@@ -297,3 +297,5 @@ ol,ul{padding:0;list-style:none}
 @media(prefers-reduced-motion:reduce){.journey{height:auto}.stage{position:relative}}
 .room:after{background:linear-gradient(90deg,rgba(6,12,11,.7) 0%,rgba(6,12,11,.25) 55%,transparent 80%),linear-gradient(180deg,transparent 45%,rgba(6,12,11,.6) 75%,rgba(6,12,11,.92))}
 @media(max-width:720px){.j-ih{font-size:clamp(24px,7vw,30px)}.room:after{background:linear-gradient(180deg,transparent 30%,rgba(6,12,11,.7) 58%,rgba(6,12,11,.95) 80%)}}
+/* 실제 사진(2026-10-25 성식 님 제공): 흑백 처리 없이 */
+.who-arch img[src*="real-"]{filter:none}
