@@ -698,3 +698,7 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
 .logo-mark .lm-dot{fill:#1a110b}
 footer .logo-mark{color:var(--white)}
 @media(max-width:700px){.logo-mark{width:40px;height:40px}}
+/* 門 표시·첫 화면 버튼 바탕 투명 (10-25 성식 님) */
+.hv8-mun{background:transparent;color:var(--goldw);border:1px solid var(--goldw)}
+.hv8-btn{background:transparent;color:#f3dcb0;border:1px solid var(--goldw)}
+.hv8-btn:hover{background:rgba(217,180,122,.12)}
