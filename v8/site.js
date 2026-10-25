@@ -50,8 +50,8 @@ const POSTS=[
    "장소: 송도국제업무지구 연수세무서 건물"
   ],
   "image": {
-   "src": "img/ref-jinsook-portrait-b.jpg",
-   "alt": "이진숙 소장 연출 이미지",
+   "src": "img/ref-opening-songdo.jpg",
+   "alt": "송도국제업무지구 야경 연출 이미지",
    "note": "AI 연출 이미지"
   },
   "cta": {
