@@ -617,3 +617,14 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
  .hd-btn{min-height:48px;font-size:15px}
  .hd-sub{display:none}
 }
+/* 휴대폰 첫 화면 글 줄이기 (10-25): 위 띠에 이미 있는 연구소 이름(영문·한글)과 구분선 숨김 → 사진을 키움 */
+@media(max-width:900px){
+ .hd-inst,.hd-rule,.hd-lab,.hd-line{display:none}
+ .hd-photo{height:clamp(240px,calc(100svh - 66px - 330px),420px)}
+ .hd-copy{margin-top:-30px}
+ .hd-of{font-size:20px}
+ .hero-dest .hd-title{font-size:88px}
+ .hd-slogan{margin-top:8px}
+ .hd-lead{margin-top:18px}
+ .hd-links{margin-top:20px}
+}
