@@ -243,3 +243,11 @@ ol,ul{padding:0;list-style:none}
 .kh-ring{animation:halo 4.2s ease-in-out infinite}
 @keyframes halo{0%,100%{filter:drop-shadow(0 0 10px rgba(230,204,152,.35))}50%{filter:drop-shadow(0 0 26px rgba(230,204,152,.85))}}
 @media(prefers-reduced-motion:reduce){.kh-shadow,.kh-dust{display:none}}
+/* 강화: 시선 반대편이 어두워지는 깊이감, 더 진한 그림자 */
+.kh-vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(38% 34% at calc(50% + var(--vx,0%)) calc(42% + var(--vy,0%)),transparent 0%,rgba(6,8,8,.12) 50%,rgba(6,8,8,.55) 100%)}
+.kh-shadow{width:46%;background:radial-gradient(50% 50% at 50% 50%,rgba(3,5,5,.97),rgba(3,5,5,.75) 50%,transparent 75%);animation-duration:6s}
+/* 빛: 열쇠 구멍 모양 그대로 바닥 쪽으로 부드럽게 퍼지는 빛 + 구멍 둘레의 은은한 번짐 */
+.kh-beam{position:absolute;pointer-events:none;width:auto;height:auto;clip-path:none;background:none;filter:blur(14px);transform:none}
+.kh-beam i{position:absolute;inset:0;clip-path:polygon(38.7% 0,61.3% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(240,214,160,.26) 0%,rgba(240,214,160,.12) 30%,rgba(240,214,160,.04) 65%,transparent 92%)}
+.kh-halo{position:absolute;pointer-events:none;border-radius:50%;background:radial-gradient(closest-side,rgba(240,214,160,.16),rgba(240,214,160,.05) 60%,transparent)}
+@media(prefers-reduced-motion:reduce){.kh-beam,.kh-halo{display:none}}

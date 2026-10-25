@@ -17,10 +17,10 @@ menu.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});
 
 /* 열쇠 구멍 */
 const kh=$('.kh'),view=$('.kh-view'),img=$('.kh-view img'),ring=$('.kh-ring'),star=$('.kh-star'),
- beam=$('.kh-beam'),intro=$('.kh-intro'),hint=$('.kh-hint'),copy=$('.kh-copy'),note=$('.kh-note'),top=$('.top');
-const qs=$$('[data-q] span'),shadow=$('.kh-shadow'),dust=$('.kh-dust');
+ beam=$('.kh-beam'),halo=$('.kh-halo'),intro=$('.kh-intro'),hint=$('.kh-hint'),copy=$('.kh-copy'),note=$('.kh-note'),top=$('.top');
+const qs=$$('[data-q] span'),shadow=$('.kh-shadow'),vig=$('.kh-vig'),dust=$('.kh-dust');
 /* 들여다보기: 손(마우스·손가락)을 움직이면 구멍 안의 장면이 반대로 움직여 다른 쪽이 보인다 */
-let aimX=0,aimY=0,lookX=0,lookY=0,near=0,nearT=0,lastMove=-1e9,khc={x:0,y:0,h:200};
+let flick=0,aimX=0,aimY=0,lookX=0,lookY=0,near=0,nearT=0,lastMove=-1e9,khc={x:0,y:0,h:200};
 function aim(cx,cy){const W=innerWidth,H=innerHeight;aimX=clamp((cx/W-.5)*2,-1,1);aimY=clamp((cy/H-.5)*2,-1,1);lastMove=performance.now();
  const d=Math.hypot(cx-khc.x,cy-khc.y);nearT=clamp(1-(d-khc.h*.4)/(khc.h*1.6))}
 addEventListener('pointermove',e=>aim(e.clientX,e.clientY),{passive:true});
@@ -29,7 +29,7 @@ function frame(){
  const H=innerHeight,W=innerWidth,r=kh.getBoundingClientRect();
  const p=reduce?1:clamp(-r.top/(r.height-H));
  if(!reduce){
-  const h0=Math.min(H*.36,W<720?230:290)*(1+.1*near);
+  const h0=Math.min(H*.44,W<720?270:340)*(1+.14*near);
   const e=clamp(p/.78),g=Math.pow(e,1.9);
   const h=h0*Math.pow(80,g),w=h*100/160;
   const x=(W-w)/2,y=H*.5-h*.44;
@@ -43,10 +43,12 @@ function frame(){
   star.style.setProperty('--st',`translate(${W/2-13}px,${y-h0*.02-40}px)`);
   star.style.opacity=clamp(1-p*6);
   intro.style.opacity=clamp(1-p*5);hint.style.opacity=clamp(1-p*8);
-  const k=(1-e)*(1-e);img.style.transform=`translate(${k*((W<720?-30:16)-lookX*11)}%,${k*(9-lookY*7)}%) scale(${1.3-.3*e})`;
+  const k=(1-e)*(1-e);img.style.transform=`translate(${k*((W<720?-40:20)-lookX*(W<720?10:13))}%,${k*(8-lookY*8)}%) scale(${1.4-.4*e})`;
+  vig.style.setProperty('--vx',(lookX*-22)+'%');vig.style.setProperty('--vy',(lookY*-16)+'%');vig.style.opacity=clamp(1-p*4);
   shadow.style.opacity=clamp(1-p*6);dust.style.opacity=clamp(1-p*3);khc={x:W/2,y:y+h*.3,h};
-  beam.style.transform=`translate(${W/2-150}px,${y+h*.93}px)`;beam.style.opacity=clamp(1-p*4);
-  img.style.filter=`sepia(.35) saturate(.9) brightness(${1.06-.26*e}) contrast(1.05)`;
+  const bt=y+h*.94;beam.style.cssText=`left:${x-w}px;top:${bt}px;width:${w*3}px;height:${Math.max(0,H-bt)}px;opacity:${clamp(1-p*4)*(1+flick*2.2)}`;
+  halo.style.cssText=`left:${W/2-h*.9}px;top:${y+h*.28-h*.9}px;width:${h*1.8}px;height:${h*1.8}px;opacity:${clamp(1-p*4)*(1+flick*2.2)}`;
+  img.style.filter=`sepia(.35) saturate(.9) brightness(${(1.06-.26*e)*(1+flick*(1-e))}) contrast(1.05)`;
   view.style.setProperty('--ov',clamp((p-.5)/.3));
   const c=clamp((p-.66)/.16);
   copy.style.opacity=c;copy.style.transform=`translateY(${(1-c)*36}px)`;copy.classList.toggle('on',c>.5);
@@ -67,8 +69,11 @@ sizeDust();addEventListener('resize',sizeDust);
 /* 매 순간 그리기(첫 장면이 보일 때만) */
 function tick(t){
  const idle=t-lastMove>2200;
- const tx=idle?Math.sin(t/2200)*.95:aimX,ty=idle?Math.cos(t/3100)*.5:aimY;
- lookX+=(tx-lookX)*.06;lookY+=(ty-lookY)*.06;near+=((idle?0:nearT)-near)*.08;
+ /* 가만히 두면 스스로 둘러봄: 왼쪽(사람) → 오른쪽 → 위 → 아래, 멈췄다 움직임 */
+ const P=[[-1,.15],[-1,.15],[.95,-.35],[.95,-.35],[.1,.7],[-.7,-.6],[-.7,-.6]],seg=(t/1700)%P.length,i=Math.floor(seg),f=seg-i,ef=f*f*(3-2*f),A=P[i],B=P[(i+1)%P.length];
+ const tx=idle?A[0]+(B[0]-A[0])*ef:aimX,ty=idle?A[1]+(B[1]-A[1])*ef:aimY;
+ flick=.1*Math.sin(t/650)*Math.sin(t/1700)-.08*Math.max(0,Math.sin(t/3100))**8;
+ lookX+=(tx-lookX)*.05;lookY+=(ty-lookY)*.05;near+=((idle?0:nearT)-near)*.08;
  if(kh.getBoundingClientRect().bottom>0){frame();if(!reduce)drawDust(t)}
  requestAnimationFrame(tick)}
 if(reduce){addEventListener('scroll',frame,{passive:true});frame()}else requestAnimationFrame(tick);
