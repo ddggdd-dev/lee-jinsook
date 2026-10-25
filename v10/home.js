@@ -67,7 +67,7 @@ sizeDust();addEventListener('resize',sizeDust);
 /* 매 순간 그리기(첫 장면이 보일 때만) */
 function tick(t){
  const idle=t-lastMove>2200;
- const tx=idle?Math.sin(t/2600)*.55:aimX,ty=idle?Math.cos(t/3400)*.35:aimY;
+ const tx=idle?Math.sin(t/2200)*.95:aimX,ty=idle?Math.cos(t/3100)*.5:aimY;
  lookX+=(tx-lookX)*.06;lookY+=(ty-lookY)*.06;near+=((idle?0:nearT)-near)*.08;
  if(kh.getBoundingClientRect().bottom>0){frame();if(!reduce)drawDust(t)}
  requestAnimationFrame(tick)}
