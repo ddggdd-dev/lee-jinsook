@@ -234,3 +234,4 @@ ol,ul{padding:0;list-style:none}
 .gnb a:hover{color:var(--gold2)}
 @media(min-width:1101px){.menu-btn{display:none}}
 @media(max-width:1100px){.gnb{display:none}}
+.kh-line{font-size:clamp(24px,2.6vw,36px)}

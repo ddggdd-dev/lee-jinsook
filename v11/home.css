@@ -204,3 +204,5 @@ button{font:inherit;color:inherit}
 .stamp{right:auto;left:62%;bottom:clamp(30px,3vw,44px)}
 @media(max-width:760px){.stamp{left:auto;right:20px;top:-22px;bottom:auto}}
 .tabs button{color:#241a0c}.tabs button:nth-child(2){background:#c7a25f}.tabs button:nth-child(3){background:#c39b58}.tabs button:nth-child(4){background:#be9552}
+.f-h{font-size:clamp(28px,2.9vw,42px)}
+.fp-t b{color:var(--ink);font-family:var(--serif)}
