@@ -71,13 +71,14 @@ addEventListener('pointermove',e=>{aimX=clamp((e.clientX/innerWidth-.5)*2,-1,1);
 
 /* 들어가기: 글자 버튼과 열쇠 구멍 버튼 모두 같은 연출(스크롤로 구멍을 통과) */
 function scrollToY(y,ms){
- if(tween)cancelAnimationFrame(tween.id);
+ stopTween();
  if(reduce){scrollTo({top:y,behavior:'instant'});return}
+ /* setTimeout으로 움직여 화면 갱신이 느린 브라우저에서도 끝까지 간다 */
  const y0=scrollY,d=y-y0,t0=performance.now();tween={};
- const step=now=>{const k=clamp((now-t0)/ms),q=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo({top:y0+d*q,behavior:'instant'});if(k<1)tween.id=requestAnimationFrame(step);else tween=null};
- tween.id=requestAnimationFrame(step);
+ const step=()=>{const k=clamp((performance.now()-t0)/ms),q=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo({top:y0+d*q,behavior:'instant'});if(k<1)tween.id=setTimeout(step,16);else tween=null};
+ step();
 }
-const stopTween=()=>{if(tween){cancelAnimationFrame(tween.id);tween=null}};
+function stopTween(){if(tween){clearTimeout(tween.id);tween=null}}
 addEventListener('wheel',stopTween,{passive:true});addEventListener('touchstart',stopTween,{passive:true});
 const enter=()=>{if(reduce){$('#doors').scrollIntoView();return}scrollToY(journey.offsetTop+journey.offsetHeight-H,2600)};
 $('.j-enter').addEventListener('click',enter);
