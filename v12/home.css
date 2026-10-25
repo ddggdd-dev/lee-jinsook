@@ -299,3 +299,23 @@ ol,ul{padding:0;list-style:none}
 @media(max-width:720px){.j-ih{font-size:clamp(24px,7vw,30px)}.room:after{background:linear-gradient(180deg,transparent 30%,rgba(6,12,11,.7) 58%,rgba(6,12,11,.95) 80%)}}
 /* 실제 사진(2026-10-25 성식 님 제공): 흑백 처리 없이 */
 .who-arch img[src*="real-"]{filter:none}
+/* 이진숙의 행선지 (표준 v8 내용, 고급형 옷) */
+.dest2{background:var(--paper);color:var(--ink);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(36px,6vw,96px);align-items:center;padding:clamp(80px,14vh,140px) clamp(20px,7vw,110px)}
+.dest2 .k{color:#7a5f2e}
+.d2-h{margin-top:18px;font-family:var(--serif);font-weight:300;font-size:clamp(40px,5vw,72px);line-height:1.2;letter-spacing:.04em}
+.d2-h em{font-style:normal;font-weight:500;color:#9a7a43}
+.d2-q{margin:34px 0 0;padding:4px 0 4px 22px;border-left:2px solid #b9975b;font-family:var(--serif);font-weight:300;font-size:clamp(20px,1.8vw,26px);line-height:1.7}
+.d2-q cite{display:block;margin-top:10px;font-family:var(--sans);font-style:normal;font-size:14px;color:var(--mute)}
+.d2-lead{margin-top:26px;color:var(--mute);max-width:34em}
+.d2-vals{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(20,32,31,.22);counter-reset:v}
+.d2-vals li{padding:20px 16px 0 0;counter-increment:v}
+.d2-vals li:before{content:"0" counter(v);display:block;font-family:var(--serif);font-size:13px;letter-spacing:.2em;color:#7a5f2e;margin-bottom:10px}
+.d2-vals b{display:block;font-family:var(--serif);font-weight:500;font-size:19px}
+.d2-vals span{display:block;margin-top:4px;font-size:14px;color:var(--mute)}
+.d2-book{position:relative;display:block;max-width:360px;justify-self:center}
+.d2-book img{width:100%;box-shadow:0 30px 60px -20px rgba(20,32,31,.55);transform:rotate(-2deg);transition:transform .5s}
+.d2-book:hover img{transform:rotate(0) translateY(-6px)}
+.d2-book .note{top:12px;right:14px;bottom:auto}
+.d2-bt{display:block;margin-top:22px;font-family:var(--serif);font-size:16px;line-height:1.5;text-align:center}
+.d2-bt small{display:block;margin-top:6px;font-family:var(--sans);font-size:13px}
+@media(max-width:900px){.dest2{grid-template-columns:1fr}.d2-vals{grid-template-columns:1fr 1fr;row-gap:20px}.d2-book{max-width:260px}}
