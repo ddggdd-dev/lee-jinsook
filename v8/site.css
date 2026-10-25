@@ -689,3 +689,12 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
  .hv8:before{background:linear-gradient(180deg,rgba(19,11,6,0) 40%,rgba(19,11,6,.8) 62%,#130b06 76%)}
 }
 @media(max-width:900px) and (max-height:700px){.hv8-photo img{width:70%}.hv8-title{font-size:27px}}
+/* 로고 (10-25, 성식 님이 준 아치 문 로고를 SVG로) */
+.logo-mark{width:50px;height:50px;flex:none;color:#f1e3c8}
+.logo-mark .lm-line{stroke:currentColor}
+.logo-mark .lm-fill{fill:currentColor}
+.logo-mark .lm-door{fill:rgba(241,227,200,.22);stroke:currentColor;stroke-width:3}
+.logo-mark .lm-gold{fill:var(--goldw)}
+.logo-mark .lm-dot{fill:#1a110b}
+footer .logo-mark{color:var(--white)}
+@media(max-width:700px){.logo-mark{width:40px;height:40px}}
