@@ -594,3 +594,6 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
 .nav a.cta{background:var(--goldw);color:var(--brown);font-weight:700}
 .menu{background:transparent;color:var(--goldw);border-color:rgba(217,180,122,.6)}
 @media(max-width:1080px){.nav{background:var(--brown);border-bottom-color:rgba(217,180,122,.35)}.nav a{border-color:rgba(217,180,122,.18)!important}}
+/* 행·선·지 머리글자 강조 (10-25) */
+.hd-slogan{color:rgba(239,220,192,.62)}
+.hd-slogan em{font-style:normal;font-weight:700;font-size:1.5em;line-height:1;color:var(--goldw);background:linear-gradient(180deg,#f3d9a4,#c99a55);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.12em;position:relative;top:.04em}
