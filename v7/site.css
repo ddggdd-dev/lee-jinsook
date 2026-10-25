@@ -647,3 +647,15 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
  .hero-dest .hd-title{font-size:96px}
  .hd-slogan{margin-top:10px;font-size:18px}
 }
+/* 첫 화면: 행선지 빼고 연구소(門)만 단순하게 (10-25) */
+.hd-simple .hd-lab{display:block;margin:0;font-size:16px;letter-spacing:.14em;color:#c9a774}
+.hd-simple .mun-k{display:inline-grid;place-items:center;width:30px;height:32px;margin-left:8px;background:var(--goldw);color:#1a110b;font-size:17px;font-weight:700;letter-spacing:0;vertical-align:middle}
+.hd-simple .hd-lead{margin:22px 0 0;font-size:clamp(32px,3.4vw,48px);font-weight:500;line-height:1.45;color:#f6e9d4;max-width:none}
+.hd-simple .hd-links{margin-top:40px}
+@media(max-width:900px){
+ .hd-photo{height:calc(100svh - 66px - 260px)}
+ .hd-simple{margin-top:-20px}
+ .hd-simple .hd-lab{display:block;font-size:13px;margin:0}
+ .hd-simple .hd-lead{font-size:26px;margin-top:14px}
+ .hd-simple .hd-links{margin-top:24px}
+}
