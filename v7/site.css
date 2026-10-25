@@ -628,3 +628,13 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
  .hd-lead{margin-top:18px}
  .hd-links{margin-top:20px}
 }
+/* 행선지(사람)와 門(연구소) 관계 보이게 (10-25) */
+.hd-lab b{color:#f3dcb0;font-weight:600}
+.hd-lead .mun-w{color:var(--goldw);font-weight:700}
+.hd-lead .mun-w small{font-size:.62em;margin-left:2px;vertical-align:.35em;color:#c9a774}
+@media(max-width:900px){
+ .hd-lab{display:block;margin-top:16px;font-size:14px;color:#cdb48e}
+ .hd-lead{margin-top:4px;font-size:18px}
+ .hd-photo{height:clamp(200px,calc(100svh - 66px - 380px),400px)}
+ .hd-of{font-size:17px}
+}
