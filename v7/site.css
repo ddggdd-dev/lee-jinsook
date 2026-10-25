@@ -597,3 +597,23 @@ header{background:linear-gradient(180deg,#24170e,#1a110b);border-bottom:1px soli
 /* 행·선·지 머리글자 강조 (10-25) */
 .hd-slogan{color:rgba(239,220,192,.62)}
 .hd-slogan em{font-style:normal;font-weight:700;font-size:1.5em;line-height:1;color:var(--goldw);background:linear-gradient(180deg,#f3d9a4,#c99a55);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.12em;position:relative;top:.04em}
+/* 휴대폰 첫 화면 한 장에 사진~"어느 문으로" 버튼까지 (10-25) */
+@media(max-width:900px){
+ .hero-dest{display:flex;flex-direction:column;min-height:calc(100svh - 66px)}
+ .hd-photo{aspect-ratio:auto;height:clamp(190px,calc(100svh - 66px - 410px),340px);flex:none}
+ .hd-photo img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%),linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%),linear-gradient(180deg,#000 62%,transparent 100%)}
+ .hd-photo .note-img{font-size:12px;top:8px}
+ .hd-copy{flex:1;margin-top:-22px;padding:0 18px 18px;justify-content:flex-start}
+ .hd-inst{font-size:11px;line-height:1.7;letter-spacing:.36em}
+ .hd-rule{margin:10px 0 12px;width:36px}
+ .hd-of{font-size:19px}
+ .hero-dest .hd-title{font-size:80px;margin-top:0}
+ .hd-swash{height:18px;margin-top:-4px;width:min(300px,78%)}
+ .hd-slogan{margin-top:6px;font-size:17px}
+ .hd-line{margin:12px 0}
+ .hd-lab{font-size:14px}
+ .hd-lead{font-size:19px;margin-top:6px;line-height:1.45}
+ .hd-links{margin-top:16px;gap:4px}
+ .hd-btn{min-height:48px;font-size:15px}
+ .hd-sub{display:none}
+}
