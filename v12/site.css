@@ -718,3 +718,82 @@ footer .logo-mark{color:var(--white)}
  .page-hero .ph-copy{padding:44px 20px 34px;min-height:240px;justify-content:flex-end}
  .page-hero .note-img{z-index:3}
 }
+
+/* ===== 상담·의뢰 (v12 옷: 청록·금색 · 2026-10-26 남덕 님 의견) ===== */
+.c12{--n:#0b1514;--n2:#10201f;--cr:#efe8db;--gd:#c9a66b;--gd2:#e6cc98;--mu:#93a39f;background:var(--n)}
+.c12 header{background:rgba(11,21,20,.94);border-bottom-color:rgba(201,166,107,.22)}
+.c12 footer{background:#081110}
+.c12 .floating{display:none}
+.c12-k{font-size:13px;letter-spacing:.32em;color:var(--gd)}
+.c12-btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 26px;font-size:15px;font-weight:600;border:0;cursor:pointer;font-family:inherit}
+.c12-btn.gold{background:var(--gd);color:var(--n)}
+.c12-btn.gold:hover{background:var(--gd2)}
+.c12-btn.line{background:transparent;color:var(--cr);border:1px solid rgba(239,232,219,.45)}
+.c12-btn.line:hover{border-color:var(--gd2);color:var(--gd2)}
+/* 문 앞 */
+.c12-hero{position:relative;overflow:hidden;text-align:center;color:var(--cr);padding:clamp(70px,11vh,120px) 20px clamp(56px,9vh,96px);background:radial-gradient(60% 55% at 50% 30%,#173230 0%,var(--n) 70%)}
+.c12-gate{position:relative;width:min(200px,44vw);margin:0 auto 34px}
+.c12-mark{position:relative;z-index:1;width:100%;height:auto;filter:drop-shadow(0 0 22px rgba(230,204,152,.35))}
+.c12-glow{position:absolute;left:50%;top:55%;width:150%;height:150%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(230,204,152,.32),transparent 70%);animation:c12b 4.5s ease-in-out infinite}
+@keyframes c12b{0%,100%{opacity:.5}50%{opacity:1}}
+.c12-h{margin:16px 0 0;font-family:'Noto Serif KR',serif;font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1.25;letter-spacing:-.01em;color:#f6efe2}
+.c12-lead{margin:16px 0 0;font-size:17px;color:rgba(239,232,219,.82)}
+.c12-reach{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.c12-sub{display:flex;flex-wrap:wrap;gap:4px 24px;justify-content:center;margin-top:30px}
+.c12-sub a{min-height:44px;display:inline-flex;align-items:center;font-size:14px;color:var(--mu)}
+.c12-sub a:hover{color:var(--gd2)}
+/* 문 고르기 */
+.c12-pick{background:#f2ece1;color:#14201f;padding:clamp(70px,11vh,120px) clamp(16px,6vw,80px)}
+.c12-pick .c12-k{color:#7a5f2e}
+.c12-pick h2,.c12-steps h2{margin:14px 0 0;font-family:'Noto Serif KR',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.3}
+.c12-t{margin:14px 0 0;color:#5d6b68;max-width:34em}
+.c12-g{margin:44px 0 16px;font-size:14px;letter-spacing:.2em;color:#7a5f2e;font-weight:600}
+.c12-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.c12-door{position:relative;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:6px;padding:0 0 20px;background:#fbf8f2;border:1px solid rgba(20,32,31,.14);border-radius:999px 999px 6px 6px;overflow:hidden;cursor:pointer;font-family:inherit;color:inherit;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.c12-door:hover,.c12-door:focus-visible{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(20,32,31,.55);border-color:#b9975b}
+.c12-arch{position:relative;display:block;width:100%;aspect-ratio:2/1.15;border-radius:999px 999px 0 0;background:radial-gradient(60% 80% at 50% 100%,#2a4a47,#10201f);overflow:hidden;perspective:600px;margin-bottom:12px}
+.c12-arch:before,.c12-arch:after{content:"";position:absolute;bottom:0;width:50%;height:100%;background:linear-gradient(180deg,#22403e,#14292a);transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.c12-arch:before{left:0;transform-origin:0 50%;box-shadow:inset -1px 0 0 rgba(201,166,107,.45)}
+.c12-arch:after{right:0;transform-origin:100% 50%;box-shadow:inset 1px 0 0 rgba(201,166,107,.45)}
+.c12-arch i{position:absolute;left:50%;top:58%;width:7px;height:16px;margin-left:-3.5px;z-index:2;background:var(--gd);clip-path:path('M3.5 0a3.5 3.5 0 0 1 2 6.4L7 16H0l1.5-9.6A3.5 3.5 0 0 1 3.5 0z');transition:opacity .4s}
+.c12-arch:has(i){background:radial-gradient(70% 90% at 50% 100%,rgba(240,214,160,.9),rgba(240,214,160,.25) 55%,#10201f)}
+.c12-door:hover .c12-arch:before,.c12-door:focus-visible .c12-arch:before{transform:rotateY(-70deg)}
+.c12-door:hover .c12-arch:after,.c12-door:focus-visible .c12-arch:after{transform:rotateY(70deg)}
+.c12-door:hover .c12-arch i,.c12-door:focus-visible .c12-arch i{opacity:0}
+.c12-door small,.c12-door b,.c12-door>span:not(.c12-arch),.c12-door em{margin:0 20px}
+.c12-door small{font-size:13px;letter-spacing:.18em;color:#7a5f2e}
+.c12-door b{font-family:'Noto Serif KR',serif;font-weight:600;font-size:18px;line-height:1.45}
+.c12-door>span:not(.c12-arch){font-size:14px;line-height:1.6;color:#5d6b68}
+.c12-door em{margin-top:auto;padding-top:10px;font-style:normal;font-size:14px;font-weight:600;color:#14201f}
+/* 진행 순서 */
+.c12-steps{background:var(--n2);color:var(--cr);padding:clamp(70px,11vh,120px) clamp(16px,6vw,80px)}
+.c12-steps ol{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(201,166,107,.3)}
+.c12-steps li{padding:26px 24px 0 0}
+.c12-steps li+li{padding-left:24px;border-left:1px solid rgba(201,166,107,.18)}
+.c12-steps i{display:block;font-style:normal;font-family:'Noto Serif KR',serif;color:var(--gd);font-size:14px;letter-spacing:.2em}
+.c12-steps b{display:block;margin-top:10px;font-family:'Noto Serif KR',serif;font-weight:500;font-size:21px}
+.c12-steps span{display:block;margin-top:8px;font-size:15px;color:rgba(239,232,219,.78)}
+/* 비용·FAQ (기존 섹션에 옷만) */
+.c12 #price-faq{background:#f2ece1}
+/* 마지막 */
+.c12-end{text-align:center;color:var(--cr);padding:clamp(70px,11vh,110px) 20px;background:radial-gradient(60% 70% at 50% 30%,#173230 0%,var(--n) 75%)}
+.c12-end h2{margin:0;font-family:'Noto Serif KR',serif;font-weight:400;font-size:clamp(30px,4vw,52px);color:#f6efe2}
+@media(max-width:720px){
+ .c12-reach{flex-direction:column;align-items:stretch;max-width:360px;margin-left:auto;margin-right:auto}
+ .c12-grid{grid-template-columns:1fr 1fr;gap:12px}
+ .c12-door b{font-size:16px}.c12-door small,.c12-door b,.c12-door>span:not(.c12-arch),.c12-door em{margin:0 14px}
+ .c12-door>span:not(.c12-arch){display:none}
+ .c12-steps ol{grid-template-columns:1fr}
+ .c12-steps li,.c12-steps li+li{padding:22px 0 0;border-left:0}
+}
+@media(prefers-reduced-motion:reduce){.c12-glow{animation:none}.c12-arch:before,.c12-arch:after{transition:none}}
+@media(max-width:720px){
+ .c12-grid{grid-template-columns:1fr}
+ .c12-door{display:grid;grid-template-columns:96px 1fr;grid-template-rows:auto auto auto;column-gap:16px;row-gap:2px;align-items:center;padding:0 16px 0 0;border-radius:999px 14px 14px 999px}
+ .c12-arch{grid-row:1/4;width:96px;height:100%;min-height:104px;aspect-ratio:auto;margin:0;border-radius:999px 0 0 999px}
+ .c12-door small,.c12-door b,.c12-door em{margin:0}
+ .c12-door small{padding-top:14px}
+ .c12-door em{padding:2px 0 14px;font-size:13px}
+}
+.c12 .nav a.cta{background:var(--gd);color:var(--n)}
+.c12 #price-faq .eyebrow{color:#7a5f2e}
