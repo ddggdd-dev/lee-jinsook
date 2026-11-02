@@ -309,7 +309,7 @@ mark.m.on{background:rgba(166,74,48,.14)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .filters button{min-height:44px;padding:0 18px;border:1px solid #cdb895;font-size:14px}
 .filters button.on{background:var(--ink);color:var(--white);border-color:var(--ink)}
-.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .post{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;text-align:left;width:100%;background:none;padding:0}
 .post .read{align-self:flex-start}
 .post .ph{aspect-ratio:3/2}
@@ -431,7 +431,7 @@ body:has(dialog[open]){overflow:hidden}
  .about{display:block}.portrait{position:relative;top:0;height:420px;margin-bottom:36px}
  .band{grid-template-columns:1fr}.band .ph{min-height:320px;order:-1}.band-copy{padding:56px 6%}
  .principle,.what,.sias-top,.counsel,.quiz-wrap,.price-faq,.contact{grid-template-columns:1fr;gap:32px}
- .stats,.career,.fields,.reports,.academy,.price,.posts{grid-template-columns:1fr 1fr}
+ .stats,.career,.fields,.reports,.academy,.price,.posts{grid-template-columns:repeat(2,minmax(0,1fr))}
  .career>div:last-child,.fields>div:last-child,.reports>div:last-child{grid-column:1/-1}
  .philo{display:block}.philo .blank{margin-top:12px}
 }

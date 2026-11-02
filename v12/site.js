@@ -92,7 +92,7 @@ const POSTS=[
    "영상: tvN Joy 공식 유튜브"
   ],
   "image": {
-   "src": "https://i.ytimg.com/vi/B_JDlwHjZ7Y/hqdefault.jpg",
+   "src": "https://i.ytimg.com/vi/B_JDlwHjZ7Y/maxresdefault.jpg",
    "alt": "유 퀴즈 온 더 블럭 85회 영상 썸네일",
    "note": "▶ 영상"
   },
@@ -116,7 +116,7 @@ const POSTS=[
    "영상: EBS 교양 공식 유튜브 (2022년 4월 게시)"
   ],
   "image": {
-   "src": "https://i.ytimg.com/vi/APCOiGAwbNs/hqdefault.jpg",
+   "src": "https://i.ytimg.com/vi/APCOiGAwbNs/maxresdefault.jpg",
    "alt": "EBS 초대석 여성 프로파일러의 세계 영상 썸네일",
    "note": "▶ 영상"
   },
