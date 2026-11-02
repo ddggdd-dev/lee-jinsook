@@ -206,8 +206,8 @@ const CATS=['전체','블로그','소식','칼럼','사례','강연','방송','�
 const EMPTY={'소식':{img:'img/ref-v3-1.jpg',title:'연구소 소식을 올립니다',text:'소식 — 확인 후'},'사례':{img:'img/ref-v3-2.jpg',title:'공개에 동의받은 사례를 정리해 올립니다',text:'사례 글 — 소장님 확인 후'},'강연':{img:'img/ref-v3-4.jpg',title:'강연·교육 소식을 올립니다',text:'강연 소식 — 소장님 확인 후'},'방송':{img:'img/ref-f-desk.jpg',title:'방송·언론 소식을 올립니다',text:'방송 소식 — 확인 후'},'칼럼':{img:'img/ref-f-docs2.jpg',title:'칼럼을 올립니다',text:'칼럼 — 소장님 확인 후'},'출간':{img:'img/ref-f-report.jpg',title:'출간 소식을 올립니다',text:'출간 소식 — 확인 후'}};
 const fmtDate=d=>{if(!d)return'예시 글';const [y,m,dd]=d.split('-');return y+'년 '+(+m)+'월'+(dd?' '+(+dd)+'일':'')};
 const byDate=(a,b)=>(b[0].date||'').localeCompare(a[0].date||'');
-function thumb(src,alt,note,label){if(!src){const t=el('div','ph ph-text');t.append(el('span',null,label||''));return t}const p=el('div','ph');const im=el('img');im.src=src;im.alt=alt||'';im.loading='lazy';p.append(im);if(note!==false)p.append(el('span','note-img',note||'AI 연출 이미지'));return p}
-function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title),el('span','meta',(p.label||p.category)+' · '+fmtDate(p.date)),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
+function thumb(src,alt,note,label,pos){if(!src){const t=el('div','ph ph-text');t.append(el('span',null,label||''));return t}const p=el('div','ph');const im=el('img');im.src=src;if(pos)im.style.objectPosition=pos;im.alt=alt||'';im.loading='lazy';p.append(im);if(note!==false)p.append(el('span','note-img',note||'AI 연출 이미지'));return p}
+function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title,p.image?.pos),el('span','meta',(p.label||p.category)+' · '+fmtDate(p.date)),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
 function emptyCard(cat){const e=EMPTY[cat];const d=el('div','post empty');const p=el('p');p.append(el('span','blank',e.text));d.append(thumb(e.img,'','AI 연출 이미지'),el('span','meta',cat),el('h3',null,e.title),p);return d}
 const postDlg=$('#post-dialog');
 if(postDlg)postDlg.addEventListener('close',()=>postDlg.querySelectorAll('.video').forEach(v=>v.remove()));
@@ -232,12 +232,22 @@ if(filters&&postsList){CATS.forEach(c=>{const b=el('button',null,c);b.type='butt
 /* 최근 소식 3개 (홈) */
 const recent=$('#recent-list');
 if(recent)recent.replaceChildren(...POSTS.map((p,i)=>[p,i]).filter(([p])=>p.date).sort(byDate).slice(0,3).map(([p,i])=>card(p,i)));
+/* 사진 없는 블로그 글: 그 글에 맞는 공식 영상, 없으면 소장님 실제 사진(글마다 다르게) — 2026-11-03 */
+const BLOG_MEDIA={
+ '221130893960':{video:'Lm217nBZ-EA',by:'대한민국 경찰청 공식 유튜브 「경찰리포트」(2017.3.17)'},
+ '222638025449':'real-hero-doc.jpg','222063584649':'real-papers.jpg','222044211652':'real-seated.jpg',
+ '221144006767':'real-portrait-teal.jpg','221130897135':'real-folder.jpg','221130893265':'real-hero-folder.jpg','10172458900':'real-seated-hands.jpg'};
 /* 네이버 블로그 최신 글 (2026-11-03): 업체 저장소의 GitHub Actions가 하루 한 번 data/blog.json을 만든다 */
 (async()=>{if(!filters&&!recent)return;let j=null;
  let base='';for(const u of ['data/blog.json','../data/blog.json']){try{const r=await fetch(u,{cache:'no-cache'});if(r.ok){j=await r.json();base=u.replace('blog.json','');break}}catch(e){}}
  if(!j||!Array.isArray(j.items)||!j.items.length)return;
- j.items.slice(0,12).forEach(it=>POSTS.push({title:it.title,date:it.date,category:'블로그',summary:it.summary||'',body:it.summary?[it.summary]:[],
-  image:it.image?{src:base+it.image,alt:it.title,note:false}:null,link:{url:it.link,text:'블로그에서 읽기'}}));
+ j.items.slice(0,12).forEach(it=>{const no=it.link.split('/').pop(),m=BLOG_MEDIA[no];
+  const post={title:it.title,date:it.date,category:'블로그',summary:it.summary||'',body:it.summary?[it.summary]:[],
+   image:it.image?{src:base+it.image,alt:it.title,note:false}:null,link:{url:it.link,text:'블로그에서 읽기'}};
+  if(!it.image&&m&&m.video){post.video=m.video;post.image={src:'https://i.ytimg.com/vi/'+m.video+'/maxresdefault.jpg',alt:it.title+' 영상',note:'▶ 영상'};post.body=post.body.concat(['영상: '+m.by])}
+  else if(!it.image&&m)post.image={src:'img/'+m,alt:'이진숙 소장',note:false,pos:'50% 12%'};
+  if(/^https?:\/\//.test(post.summary)){post.body=[];post.summary=''}
+  POSTS.push(post)});
  if(filters&&postsList)filt('전체');
  if(recent)recent.replaceChildren(...POSTS.map((p,i)=>[p,i]).filter(([p])=>p.date).sort(byDate).slice(0,3).map(([p,i])=>card(p,i)))})();
 
