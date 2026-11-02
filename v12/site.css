@@ -312,7 +312,7 @@ mark.m.on{background:rgba(166,74,48,.14)}
 .posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .post{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;text-align:left;width:100%;background:none;padding:0}
 .post .read{align-self:flex-start}
-.post .ph{aspect-ratio:3/2}
+.post .ph{aspect-ratio:16/9}
 .post .ph img{position:absolute;inset:0;transition:transform .5s}
 .post:hover .ph img{transform:scale(1.04)}
 .post .meta{display:block;font-size:13px;color:var(--orange);letter-spacing:.06em;margin:16px 0 8px}
