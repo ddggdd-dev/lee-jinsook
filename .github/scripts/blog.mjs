@@ -14,11 +14,13 @@ async function photoFor(no, desc) {
   try { html = await (await fetch(`https://m.blog.naver.com/PostView.naver?blogId=hmimo&logNo=${no}`, { headers: UA })).text(); } catch {}
   if (DEBUG.length < 2) DEBUG.push(`== ${no} len=${html.length}\n` + html.slice(0, 200) + "\n...\n" + (html.match(/.{0,120}(postfiles|blogfiles|og:image|youtube).{0,160}/g) || []).slice(0, 12).join("\n"));
   const cands = [];
-  for (const m of html.matchAll(/https?:\/\/(?:postfiles|blogfiles|mblogthumb-phinf)\.pstatic\.net\/[^"'\s)<>\\]+/g)) cands.push(m[0]);
-  const yt = (html.match(/(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/) || [])[1];
+  const og = (html.match(/property="og:image"\s+content="([^"]+)"/) || [])[1];
+  if (og && !/\/static\//.test(og)) cands.push(og);                     // 글마다 다른 대표 사진(blogthumb)
+  const body = html.replace(/<script[\s\S]*?<\/script>/g, "");           // 광고 배너(스크립트 안) 제외
+  const yt = (body.match(/(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/) || [])[1];
   if (yt) cands.push(`https://i.ytimg.com/vi/${yt}/hqdefault.jpg`);
+  for (const m of body.matchAll(/https?:\/\/(?:postfiles|blogfiles|mblogthumb-phinf|blogthumb)\.pstatic\.net\/[^"'\s)<>\\]+/g)) cands.push(m[0]);
   const d = (desc.match(/<img[^>]+src="([^"]+)"/) || [])[1]; if (d) cands.push(d);
-  const og = (html.match(/property="og:image"\s+content="([^"]+)"/) || [])[1]; if (og) cands.push(og);
   for (let u of cands) {
     u = unent(u).replace(/\?type=\w+$/, "");
     if (/blog_profile|profile|og_default|noimage|static\/blog|spc\.gif/i.test(u)) continue;
