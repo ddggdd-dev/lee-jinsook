@@ -235,8 +235,8 @@ if(recent)recent.replaceChildren(...POSTS.map((p,i)=>[p,i]).filter(([p])=>p.date
 /* 사진 없는 블로그 글: 그 글에 맞는 공식 영상, 없으면 소장님 실제 사진(글마다 다르게) — 2026-11-03 */
 const BLOG_MEDIA={
  '221130893960':{video:'Lm217nBZ-EA',by:'대한민국 경찰청 공식 유튜브 「경찰리포트」(2017.3.17)'},
- '222638025449':'real-hero-doc.jpg','222063584649':'real-papers.jpg','222044211652':'real-seated.jpg',
- '221144006767':'real-portrait-teal.jpg','221130897135':'real-folder.jpg','221130893265':'real-hero-folder.jpg','10172458900':'real-seated-hands.jpg'};
+ '222638025449':'img/real-hero-doc.jpg','222063584649':'img/real-papers.jpg','222044211652':'img/real-seated.jpg',
+ '221144006767':'img/real-portrait-teal.jpg','221130897135':'img/real-folder.jpg','221130893265':'img/real-hero-folder.jpg','10172458900':'img/real-seated-hands.jpg'};
 /* 네이버 블로그 최신 글 (2026-11-03): 업체 저장소의 GitHub Actions가 하루 한 번 data/blog.json을 만든다 */
 (async()=>{if(!filters&&!recent)return;let j=null;
  let base='';for(const u of ['data/blog.json','../data/blog.json']){try{const r=await fetch(u,{cache:'no-cache'});if(r.ok){j=await r.json();base=u.replace('blog.json','');break}}catch(e){}}
@@ -245,7 +245,7 @@ const BLOG_MEDIA={
   const post={title:it.title,date:it.date,category:'블로그',summary:it.summary||'',body:it.summary?[it.summary]:[],
    image:it.image?{src:base+it.image,alt:it.title,note:false}:null,link:{url:it.link,text:'블로그에서 읽기'}};
   if(!it.image&&m&&m.video){post.video=m.video;post.image={src:'https://i.ytimg.com/vi/'+m.video+'/maxresdefault.jpg',alt:it.title+' 영상',note:'▶ 영상'};post.body=post.body.concat(['영상: '+m.by])}
-  else if(!it.image&&m)post.image={src:'img/'+m,alt:'이진숙 소장',note:false,pos:'50% 12%'};
+  else if(!it.image&&m)post.image={src:m,alt:'이진숙 소장',note:false,pos:'50% 12%'};
   if(/^https?:\/\//.test(post.summary)){post.body=[];post.summary=''}
   POSTS.push(post)});
  if(filters&&postsList)filt('전체');
