@@ -718,3 +718,8 @@ footer .logo-mark{color:var(--white)}
  .page-hero .ph-copy{padding:44px 20px 34px;min-height:240px;justify-content:flex-end}
  .page-hero .note-img{z-index:3}
 }
+/* 방송·언론 목록 (2026-11-03) */
+.media-list{list-style:none;margin:0;padding:0}
+.media-list li+li{margin-top:6px}
+.media-list a{display:inline-block;min-height:32px;padding:4px 0;border-bottom:1px solid transparent}
+.media-list a:hover{border-bottom-color:currentColor}

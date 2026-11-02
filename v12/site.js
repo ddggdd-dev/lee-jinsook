@@ -181,11 +181,11 @@ if(qz){
 }
 
 /* 인사이트: 카드·게시판·글 창 */
-const CATS=['전체','소식','칼럼','사례','강연','방송','출간'];
+const CATS=['전체','블로그','소식','칼럼','사례','강연','방송','출간'];
 const EMPTY={'소식':{img:'img/ref-v3-1.jpg',title:'연구소 소식을 올립니다',text:'소식 — 확인 후'},'사례':{img:'img/ref-v3-2.jpg',title:'공개에 동의받은 사례를 정리해 올립니다',text:'사례 글 — 소장님 확인 후'},'강연':{img:'img/ref-v3-4.jpg',title:'강연·교육 소식을 올립니다',text:'강연 소식 — 소장님 확인 후'},'방송':{img:'img/ref-f-desk.jpg',title:'방송·언론 소식을 올립니다',text:'방송 소식 — 확인 후'},'칼럼':{img:'img/ref-f-docs2.jpg',title:'칼럼을 올립니다',text:'칼럼 — 소장님 확인 후'},'출간':{img:'img/ref-f-report.jpg',title:'출간 소식을 올립니다',text:'출간 소식 — 확인 후'}};
 const fmtDate=d=>{if(!d)return'예시 글';const [y,m,dd]=d.split('-');return y+'년 '+(+m)+'월'+(dd?' '+(+dd)+'일':'')};
 const byDate=(a,b)=>(b[0].date||'').localeCompare(a[0].date||'');
-function thumb(src,alt,note){const p=el('div','ph');const im=el('img');im.src=src;im.alt=alt||'';im.loading='lazy';p.append(im,el('span','note-img',note||'AI 연출 이미지'));return p}
+function thumb(src,alt,note){const p=el('div','ph');const im=el('img');im.src=src;im.alt=alt||'';im.loading='lazy';p.append(im);if(note!==false)p.append(el('span','note-img',note||'AI 연출 이미지'));return p}
 function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note),el('span','meta',(p.label||p.category)+' · '+fmtDate(p.date)),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
 function emptyCard(cat){const e=EMPTY[cat];const d=el('div','post empty');const p=el('p');p.append(el('span','blank',e.text));d.append(thumb(e.img,'','AI 연출 이미지'),el('span','meta',cat),el('h3',null,e.title),p);return d}
 const postDlg=$('#post-dialog');
@@ -210,6 +210,14 @@ if(filters&&postsList){CATS.forEach(c=>{const b=el('button',null,c);b.type='butt
 /* 최근 소식 3개 (홈) */
 const recent=$('#recent-list');
 if(recent)recent.replaceChildren(...POSTS.map((p,i)=>[p,i]).filter(([p])=>p.date).sort(byDate).slice(0,3).map(([p,i])=>card(p,i)));
+/* 네이버 블로그 최신 글 (2026-11-03): 업체 저장소의 GitHub Actions가 하루 한 번 data/blog.json을 만든다 */
+(async()=>{if(!filters&&!recent)return;let j=null;
+ for(const u of ['data/blog.json','../data/blog.json']){try{const r=await fetch(u,{cache:'no-cache'});if(r.ok){j=await r.json();break}}catch(e){}}
+ if(!j||!Array.isArray(j.items)||!j.items.length)return;
+ j.items.slice(0,12).forEach(it=>POSTS.push({title:it.title,date:it.date,category:'블로그',summary:it.summary||'',body:it.summary?[it.summary]:[],
+  image:{src:'img/real-reading.jpg',alt:'이진숙 소장',note:false},link:{url:it.link,text:'블로그에서 읽기'}}));
+ if(filters&&postsList)filt('전체');
+ if(recent)recent.replaceChildren(...POSTS.map((p,i)=>[p,i]).filter(([p])=>p.date).sort(byDate).slice(0,3).map(([p,i])=>card(p,i)))})();
 
 /* 상담·의뢰: 7가지 상황 → 문의 정리 (모든 페이지의 data-need 버튼이 이 창을 엽니다) */
 const NEEDS=[
