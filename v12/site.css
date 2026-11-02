@@ -730,3 +730,4 @@ footer .logo-mark{color:var(--white)}
 /* 글 창 속 유튜브 영상 (2026-11-03) */
 .video{position:relative;aspect-ratio:16/9;background:#000;margin:14px 0}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.reach a,.send-to a{display:inline-block;padding:9px 0}
