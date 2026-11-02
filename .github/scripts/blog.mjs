@@ -7,12 +7,10 @@ const pick = (s, tag) => { const m = s.match(new RegExp(`<${tag}>([\\s\\S]*?)</$
 const text = h => h.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 const kst = d => new Date(new Date(d).getTime() + 9 * 3600e3).toISOString().slice(0, 10);
 const unent = s => s.replace(/&amp;/g, "&");
-const DEBUG = [];
 async function photoFor(no, desc) {
   // 글 속 사진(postfiles/blogfiles) → 글 속 유튜브 썸네일 → RSS 본문 사진 → og:image 순서
   let html = "";
   try { html = await (await fetch(`https://m.blog.naver.com/PostView.naver?blogId=hmimo&logNo=${no}`, { headers: UA })).text(); } catch {}
-  if (DEBUG.length < 2) DEBUG.push(`== ${no} len=${html.length}\n` + html.slice(0, 200) + "\n...\n" + (html.match(/.{0,120}(postfiles|blogfiles|og:image|youtube).{0,160}/g) || []).slice(0, 12).join("\n"));
   const cands = [];
   const og = (html.match(/property="og:image"\s+content="([^"]+)"/) || [])[1];
   if (og && !/\/static\//.test(og)) cands.push(og);                     // 글마다 다른 대표 사진(blogthumb)
@@ -51,7 +49,6 @@ import crypto from "node:crypto";
 const seen = {};
 for (const i of items) if (i.image) { const h = crypto.createHash("md5").update(fs.readFileSync("data/" + i.image)).digest("hex"); (seen[h] ||= []).push(i); }
 for (const list of Object.values(seen)) if (list.length > 2) for (const i of list) { fs.rmSync("data/" + i.image, { force: true }); i.image = null; }
-fs.writeFileSync("data/blog-debug.txt", DEBUG.join("\n\n"));
 fs.mkdirSync("data", { recursive: true });
 fs.writeFileSync("data/blog.json", JSON.stringify({ source: "https://blog.naver.com/hmimo", items }, null, 1) + "\n");
 console.log(`글 ${items.length}개, 사진 ${items.filter(i => i.image).length}개`);
