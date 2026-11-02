@@ -236,7 +236,7 @@ if(recent)recent.replaceChildren(...POSTS.map((p,i)=>[p,i]).filter(([p])=>p.date
 const BLOG_MEDIA={
  '221130893960':{video:'Lm217nBZ-EA',by:'대한민국 경찰청 공식 유튜브 「경찰리포트」(2017.3.17)'},
  '222638025449':'img/ref-blog-1.jpg','222063584649':'img/ref-blog-2.jpg','222044211652':'img/ref-blog-3.jpg',
- '221144006767':'img/real-portrait-teal.jpg','221130897135':'img/real-folder.jpg','221130893265':'img/real-hero-folder.jpg','10172458900':'img/real-seated-hands.jpg'};
+ '221144006767':'img/ref-blog-4.jpg','221130897135':'img/ref-blog-5.jpg','221130893265':'img/real-hero-folder.jpg','10172458900':'img/real-seated-hands.jpg'};
 /* 네이버 블로그 최신 글 (2026-11-03): 업체 저장소의 GitHub Actions가 하루 한 번 data/blog.json을 만든다 */
 (async()=>{if(!filters&&!recent)return;let j=null;
  let base='';for(const u of ['data/blog.json','../data/blog.json']){try{const r=await fetch(u,{cache:'no-cache'});if(r.ok){j=await r.json();base=u.replace('blog.json','');break}}catch(e){}}
