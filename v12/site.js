@@ -69,9 +69,9 @@ const POSTS=[
    "앞서 2020년 10월에는 『오늘도 살인범을 만나러 갑니다』(행성B)를 냈습니다."
   ],
   "image": {
-   "src": "img/ref-v3-5.jpg",
-   "alt": "책상 위 원고에 메모하는 손의 연출 사진",
-   "note": "AI 연출 이미지 · 책 표지가 아닙니다"
+   "src": "img/book-devil-cover.jpg",
+   "alt": "책 『내 안의 악마를 꺼내지 마세요』 표지",
+   "note": false
   },
   "link": {
    "url": "https://www.yes24.com/product/goods/124754339",
