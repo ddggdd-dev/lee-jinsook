@@ -727,3 +727,6 @@ footer .logo-mark{color:var(--white)}
 .ph-text{display:flex;align-items:flex-end;padding:22px;background:linear-gradient(160deg,#3a2616,#1c120a)}
 .ph-text span{font-family:var(--serif);font-weight:300;font-size:clamp(17px,1.6vw,21px);line-height:1.45;color:var(--gold);word-break:keep-all;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .ph-text::before{content:"블로그";position:absolute;top:18px;left:22px;font-size:12px;letter-spacing:.12em;color:rgba(214,184,140,.7)}
+/* 글 창 속 유튜브 영상 (2026-11-03) */
+.video{position:relative;aspect-ratio:16/9;background:#000;margin:14px 0}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}

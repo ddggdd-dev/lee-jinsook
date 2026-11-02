@@ -86,23 +86,44 @@ const POSTS=[
   "title": "tvN 「유 퀴즈 온 더 블럭」 출연",
   "date": "2020-12",
   "category": "방송",
-  "summary": "이진숙 프로파일러가 2020년 12월 tvN 「유 퀴즈 온 더 블럭」에 출연했습니다.",
+  "summary": "이진숙 프로파일러가 2020년 12월 tvN 「유 퀴즈 온 더 블럭」 85회에 출연했습니다.",
   "body": [
-   "이진숙 프로파일러가 2020년 12월 tvN 「유 퀴즈 온 더 블럭」에 출연했습니다."
+   "이진숙 프로파일러가 2020년 12월 tvN 「유 퀴즈 온 더 블럭」 85회에 출연했습니다.",
+   "영상: tvN Joy 공식 유튜브"
   ],
   "image": {
-   "src": "img/ref-v3-2.jpg",
-   "alt": "사건 자료를 정리한 분석실 연출 사진",
-   "note": "AI 연출 이미지 · 방송 장면이 아닙니다"
+   "src": "https://i.ytimg.com/vi/B_JDlwHjZ7Y/hqdefault.jpg",
+   "alt": "유 퀴즈 온 더 블럭 85회 영상 썸네일",
+   "note": "▶ 영상"
   },
+  "video": "B_JDlwHjZ7Y",
   "link": {
-   "url": "#",
-   "text": "방송 다시보기 링크 — 확인 후",
-   "blank": true
+   "url": "https://www.youtube.com/watch?v=B_JDlwHjZ7Y",
+   "text": "유튜브에서 보기"
   },
   "cta": {
    "href": "edu.html",
    "text": "교육·강연 알아보기"
+  }
+ },
+ {
+  "title": "EBS 초대석 「여성 프로파일러의 세계」",
+  "date": "2022-04",
+  "category": "방송",
+  "summary": "EBS 초대석에 이진숙 경위가 출연해 프로파일러의 세계를 이야기했습니다.",
+  "body": [
+   "EBS 초대석 「여성 프로파일러의 세계 – 이진숙(경위)」.",
+   "영상: EBS 교양 공식 유튜브 (2022년 4월 게시)"
+  ],
+  "image": {
+   "src": "https://i.ytimg.com/vi/APCOiGAwbNs/hqdefault.jpg",
+   "alt": "EBS 초대석 여성 프로파일러의 세계 영상 썸네일",
+   "note": "▶ 영상"
+  },
+  "video": "APCOiGAwbNs",
+  "link": {
+   "url": "https://www.youtube.com/watch?v=APCOiGAwbNs",
+   "text": "유튜브에서 보기"
   }
  },
  {
@@ -189,9 +210,10 @@ function thumb(src,alt,note,label){if(!src){const t=el('div','ph ph-text');t.app
 function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title),el('span','meta',(p.label||p.category)+' · '+fmtDate(p.date)),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
 function emptyCard(cat){const e=EMPTY[cat];const d=el('div','post empty');const p=el('p');p.append(el('span','blank',e.text));d.append(thumb(e.img,'','AI 연출 이미지'),el('span','meta',cat),el('h3',null,e.title),p);return d}
 const postDlg=$('#post-dialog');
+if(postDlg)postDlg.addEventListener('close',()=>postDlg.querySelectorAll('.video').forEach(v=>v.remove()));
 function openPost(i){const p=POSTS[i],body=$('#post-body');if(!p||!postDlg||!body)return;body.replaceChildren();
  body.append(el('span','meta',(p.label||p.category)+' · '+fmtDate(p.date)));const h=el('h2',null,p.title);h.id='post-title';body.append(h);
- if(p.image)body.append(thumb(p.image.src,p.image.alt,p.image.note));
+ if(p.video){const v=el('div','video');const f=el('iframe');f.src='https://www.youtube-nocookie.com/embed/'+p.video;f.title=p.title;f.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;f.loading='lazy';v.append(f);body.append(v)}else if(p.image)body.append(thumb(p.image.src,p.image.alt,p.image.note));
  const bd=el('div','body');(p.body||[]).forEach(t=>bd.append(el('p',null,t)));if(p.list){const ol=el('ol');p.list.forEach(t=>ol.append(el('li',null,t)));bd.append(ol)}(p.after||[]).forEach(t=>bd.append(el('p',null,t)));body.append(bd);
  const acts=el('div','acts');
  if(p.link){if(p.link.blank){acts.append(el('span','blank',p.link.text))}else{const a=el('a','btn',p.link.text);a.href=p.link.url;a.target='_blank';a.rel='noopener';acts.append(a)}}
