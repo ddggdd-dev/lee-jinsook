@@ -203,6 +203,8 @@ if(qz){
 }
 
 /* 인사이트: 카드·게시판·글 창 */
+const PROD=!document.querySelector('meta[name="robots"][content*="noindex"]');
+if(PROD)for(let i=POSTS.length-1;i>=0;i--)if(/예시/.test(POSTS[i].label||''))POSTS.splice(i,1);
 const CATS=['전체','블로그','소식','칼럼','사례','강연','방송','출간'];
 const EMPTY={'소식':{img:'img/ref-v3-1.jpg',title:'연구소 소식을 올립니다',text:'소식 — 확인 후'},'사례':{img:'img/ref-v3-2.jpg',title:'공개에 동의받은 사례를 정리해 올립니다',text:'사례 글 — 소장님 확인 후'},'강연':{img:'img/ref-v3-4.jpg',title:'강연·교육 소식을 올립니다',text:'강연 소식 — 소장님 확인 후'},'방송':{img:'img/ref-f-desk.jpg',title:'방송·언론 소식을 올립니다',text:'방송 소식 — 확인 후'},'칼럼':{img:'img/ref-f-docs2.jpg',title:'칼럼을 올립니다',text:'칼럼 — 소장님 확인 후'},'출간':{img:'img/ref-f-report.jpg',title:'출간 소식을 올립니다',text:'출간 소식 — 확인 후'}};
 const fmtDate=d=>{if(!d)return'예시 글';const [y,m,dd]=d.split('-');return y+'년 '+(+m)+'월'+(dd?' '+(+dd)+'일':'')};
@@ -226,10 +228,10 @@ function filt(c){if(!filters||!postsList)return;
  $$('#filters button').forEach(b=>{b.classList.toggle('on',b.dataset.c===c);b.setAttribute('aria-pressed',b.dataset.c===c)});
  const list=POSTS.map((p,i)=>[p,i]).filter(([p])=>c==='전체'||p.category===c).sort(byDate);
  const out=list.map(([p,i])=>card(p,i));
- if(c==='전체'&&!POSTS.some(p=>p.category==='사례'))out.push(emptyCard('사례'));
- if(c!=='전체'&&!list.length)out.push(emptyCard(c));
+ if(!PROD&&c==='전체'&&!POSTS.some(p=>p.category==='사례'))out.push(emptyCard('사례'));
+ if(!PROD&&c!=='전체'&&!list.length)out.push(emptyCard(c));
  postsList.replaceChildren(...out)}
-if(filters&&postsList){CATS.forEach(c=>{const b=el('button',null,c);b.type='button';b.dataset.c=c;b.onclick=()=>filt(c);filters.append(b)});filt('전체')}
+if(filters&&postsList){CATS.filter(c=>!PROD||c==='전체'||c==='블로그'||POSTS.some(p=>p.category===c)).forEach(c=>{const b=el('button',null,c);b.type='button';b.dataset.c=c;b.onclick=()=>filt(c);filters.append(b)});filt('전체')}
 /* 최근 소식 3개 (홈) */
 const recent=$('#recent-list');
 if(recent)recent.replaceChildren(...POSTS.map((p,i)=>[p,i]).filter(([p])=>p.date).sort(byDate).slice(0,3).map(([p,i])=>card(p,i)));
