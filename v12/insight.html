@@ -3,7 +3,7 @@
 <meta name="description" content="이진숙 프로파일러의 소식·칼럼·방송·출간 소식.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&amp;family=Noto+Serif+KR:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="site.css?v=202611050115">
+<link rel="stylesheet" href="site.css?v=202611050257">
 </head><body data-page="insight">
 <a class="skip" href="#main">본문 바로가기</a>
 <header id="top">
@@ -57,7 +57,7 @@
  </div>
  <div class="f-bot"><span>© 이진숙 프로파일링 연구소 門</span><span>이진숙 소장 사진 외의 사진은 AI 연출 이미지이며 실제 인물·공간·사건을 나타내지 않습니다.</span></div>
 </footer>
-<button class="floating away" type="button" id="floating-open">상담·의뢰 ↗</button>
+<button class="floating away" type="button" id="floating-open">무엇을 도와드릴까요?</button>
 
 <!-- 문의 정리 창 -->
 <dialog id="inquiry-dialog" aria-labelledby="inquiry-title"><div class="modal-head"><span>상담·의뢰 준비</span><button class="close" type="button" aria-label="문의 창 닫기">×</button></div><div class="modal-body">
@@ -71,7 +71,8 @@
   <label class="field">상황 설명 · 희망 일정 (선택)<textarea id="inquiry-note" maxlength="500" placeholder="언제, 어떤 자료가 있고, 무엇이 궁금한지 간단히 적어 주세요."></textarea></label>
   <p class="micro">사건 당사자의 실명·주민번호 같은 민감한 정보는 첫 문의에 적지 마세요. 자료는 진행을 정한 뒤 전달 방법을 안내합니다.</p>
   <div class="result"><h3>정리된 문의 내용</h3><textarea id="inquiry-output" readonly="" aria-label="복사할 문의 내용"></textarea></div>
-  <button class="solid" type="button" id="copy-inquiry">문의 내용 복사</button>
+  <a class="solid sms" id="sms-inquiry" href="sms:01033657464">문자로 보내기</a>
+  <button class="solid ghost" type="button" id="copy-inquiry">문의 내용 복사</button>
   <p class="status" id="copy-status" role="status" aria-live="polite"></p>
   <p class="send-to">보낼 곳 · 전화 <a href="tel:0327102055">032-710-2055</a> · 이메일 <a href="mailto:moon.profiling@gmail.com">moon.profiling@gmail.com</a></p>
  </form>
@@ -79,6 +80,6 @@
 
 <!-- 인사이트 글 창 -->
 <dialog id="post-dialog" aria-labelledby="post-title"><div class="modal-head"><span>인사이트</span><button class="close" type="button" aria-label="글 창 닫기">×</button></div><div class="modal-body article" id="post-body"></div></dialog>
-<script src="site.js?v=202611050115"></script>
+<script src="site.js?v=202611050257"></script>
 
 </body></html>

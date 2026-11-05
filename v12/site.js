@@ -276,7 +276,14 @@ if(inqDlg&&kindSel&&ctxSel){
  document.addEventListener('click',e=>{const t=e.target.closest('[data-need]');if(!t)return;e.preventDefault();setMenu(false);openInquiry(+t.dataset.need,t.dataset.test)});
  kindSel.onchange=()=>updateKind();ctxSel.onchange=updateOutput;['#f-name','#f-tel','#inquiry-note'].forEach(s=>{const f=$(s);if(f)f.oninput=updateOutput});
  $('#inquiry-form').onsubmit=e=>e.preventDefault();
- $('#copy-inquiry').onclick=async()=>{try{await navigator.clipboard.writeText($('#inquiry-output').value);$('#copy-status').textContent='복사했습니다. 아래 연락처로 보내 주세요.'}catch(err){const ta=$('#inquiry-output');ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}$('#copy-status').textContent=ok?'복사했습니다. 아래 연락처로 보내 주세요.':'선택된 내용을 길게 눌러 복사해 주세요.'}};
+ /* 문자로 보내기 (2026-11-05 남덕 님): 휴대폰은 문자 앱이 소장님 번호·내용 채운 채로 열림, 컴퓨터는 복사 후 안내 */
+const smsBtn=$('#sms-inquiry');
+if(smsBtn)smsBtn.onclick=async e=>{const body=$('#inquiry-output').value||'[이진숙 프로파일링 연구소 문의]';
+ const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+ if(mobile){const ios=/iPhone|iPad|iPod/i.test(navigator.userAgent);smsBtn.href='sms:01033657464'+(ios?'&':'?')+'body='+encodeURIComponent(body);return}
+ e.preventDefault();try{await navigator.clipboard.writeText(body)}catch(err){}
+ $('#copy-status').textContent='문의 내용을 복사했습니다. 휴대폰에서 누르시면 문자 앱이 바로 열립니다. 컴퓨터에서는 아래 이메일로 보내 주세요.'};
+$('#copy-inquiry').onclick=async()=>{try{await navigator.clipboard.writeText($('#inquiry-output').value);$('#copy-status').textContent='복사했습니다. 아래 연락처로 보내 주세요.'}catch(err){const ta=$('#inquiry-output');ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}$('#copy-status').textContent=ok?'복사했습니다. 아래 연락처로 보내 주세요.':'선택된 내용을 길게 눌러 복사해 주세요.'}};
  /* 다른 페이지에서 contact.html#need-1 처럼 오면 그 항목으로 창을 엽니다 */
  const m=/^#need-(\d)$/.exec(location.hash);if(m&&NEEDS[+m[1]])openInquiry(+m[1]);
 }
