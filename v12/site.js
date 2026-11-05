@@ -21,8 +21,9 @@ const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className
 const POSTS=[
  {
   "title": "『이진숙의 행선지 — 행복한 선택, 지금!』",
-  "date": "2025-11",
+  "date": "",
   "category": "출간",
+  "label": "출판 예정",
   "summary": "사람의 선택을 분석해 온 프로파일러가 전하는 행복한 삶의 방향.",
   "body": [
    "이진숙 소장의 책 『이진숙의 행선지 — 행복한 선택, 지금!』.",
@@ -207,12 +208,12 @@ const EMPTY={'소식':{img:'img/ref-v3-1.jpg',title:'연구소 소식을 올립�
 const fmtDate=d=>{if(!d)return'예시 글';const [y,m,dd]=d.split('-');return y+'년 '+(+m)+'월'+(dd?' '+(+dd)+'일':'')};
 const byDate=(a,b)=>(b[0].date||'').localeCompare(a[0].date||'');
 function thumb(src,alt,note,label,pos){if(!src){const t=el('div','ph ph-text');t.append(el('span',null,label||''));return t}const p=el('div','ph');const im=el('img');im.src=src;if(pos)im.style.objectPosition=pos;im.alt=alt||'';im.loading='lazy';p.append(im);if(note!==false)p.append(el('span','note-img',note||'AI 연출 이미지'));return p}
-function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title,p.image?.pos),el('span','meta',(p.label||p.category)+' · '+fmtDate(p.date)),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
+function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title,p.image?.pos),el('span','meta',(p.label||p.category)+(p.date?' · '+fmtDate(p.date):'')),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
 function emptyCard(cat){const e=EMPTY[cat];const d=el('div','post empty');const p=el('p');p.append(el('span','blank',e.text));d.append(thumb(e.img,'','AI 연출 이미지'),el('span','meta',cat),el('h3',null,e.title),p);return d}
 const postDlg=$('#post-dialog');
 if(postDlg)postDlg.addEventListener('close',()=>postDlg.querySelectorAll('.video').forEach(v=>v.remove()));
 function openPost(i){const p=POSTS[i],body=$('#post-body');if(!p||!postDlg||!body)return;body.replaceChildren();
- body.append(el('span','meta',(p.label||p.category)+' · '+fmtDate(p.date)));const h=el('h2',null,p.title);h.id='post-title';body.append(h);
+ body.append(el('span','meta',(p.label||p.category)+(p.date?' · '+fmtDate(p.date):'')));const h=el('h2',null,p.title);h.id='post-title';body.append(h);
  if(p.video){const v=el('div','video');const f=el('iframe');f.src='https://www.youtube-nocookie.com/embed/'+p.video;f.title=p.title;f.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;f.loading='lazy';v.append(f);body.append(v)}else if(p.image)body.append(thumb(p.image.src,p.image.alt,p.image.note));
  const bd=el('div','body');(p.body||[]).forEach(t=>bd.append(el('p',null,t)));if(p.list){const ol=el('ol');p.list.forEach(t=>ol.append(el('li',null,t)));bd.append(ol)}(p.after||[]).forEach(t=>bd.append(el('p',null,t)));body.append(bd);
  const acts=el('div','acts');
