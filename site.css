@@ -790,3 +790,8 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 /* 강조 분야: 업무상 재해 (2026-11-06 남덕 님) */
 .rep-fields li.hl{border:2px solid #e3bd7c;background:linear-gradient(135deg,rgba(227,189,124,.30),rgba(176,132,64,.22));color:#fff4df;box-shadow:0 0 0 3px rgba(227,189,124,.14),0 8px 20px rgba(0,0,0,.28)}
 .rep-fields li.hl small{color:#f1d9ad}
+/* 진술분석 '어떤 자료를 분석하나요' — 프로파일링보고서 분야 4칸과 같은 모양 (2026-11-06 남덕 님) */
+.rep-fields.on-light{max-width:none;margin-top:8px;gap:14px}
+.rep-fields.on-light li{min-height:84px;background:linear-gradient(180deg,#3a2a20,#2a1d15);border-color:rgba(217,180,122,.5);color:#f6ead6;font-size:18px;box-shadow:0 8px 20px rgba(42,26,15,.18)}
+.rep-fields.on-light li.hl{background:linear-gradient(135deg,#5a4126,#3a2a1a);border-color:#e3bd7c}
+@media(max-width:720px){.rep-fields.on-light li{min-height:66px;font-size:16px}}
