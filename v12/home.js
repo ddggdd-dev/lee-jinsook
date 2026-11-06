@@ -91,10 +91,16 @@ const qs=$$('[data-q] span');
 function loop(t){paint(t);const Hh=innerHeight;for(const s of qs){if(s.getBoundingClientRect().top<Hh*.66)s.classList.add('on');else if(!reduce)s.classList.remove('on')}requestAnimationFrame(loop)}
 resize();requestAnimationFrame(loop);
 
-/* 네 개의 문: 화면에 들어오면 차례로 열림 */
+/* 네 개의 문 (2026-11-06 남덕 님): 닫힌 채로 보이고, 문을 누르면 그 문이 열림(열린 문을 다시 누르면 그 페이지로).
+   문이 화면에 보인 뒤 3초 동안 아무 문도 누르지 않으면 첫 문이 저절로 열림 */
 const doors=$$('.door-card,.d-list .door');
 if(reduce||!('IntersectionObserver'in window))doors.forEach(d=>d.classList.add('open'));
-else{const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const d=en.target,i=doors.indexOf(d);setTimeout(()=>d.classList.add('open'),innerWidth>720?i*220:150);io.unobserve(d)}}),{threshold:.55});doors.forEach(d=>io.observe(d))}
+else if(doors.length){
+ let touched=false,timer=0;
+ doors.forEach(d=>{const a=d.querySelector('a');if(!a)return;a.addEventListener('click',e=>{touched=true;clearTimeout(timer);if(!d.classList.contains('open')){e.preventDefault();d.classList.add('open')}})});
+ const io=new IntersectionObserver(es=>{if(es.some(en=>en.isIntersecting)&&!touched&&!timer){timer=setTimeout(()=>{if(!touched)doors[0].classList.add('open')},3000);io.disconnect()}},{threshold:.5});
+ io.observe(doors[0].querySelector('.arch')||doors[0]);
+}
 
 /* 사진 없는 블로그 글의 대표 사진 — site.js 와 같은 목록 */
 const BLOG_MEDIA={
