@@ -95,4 +95,24 @@ resize();requestAnimationFrame(loop);
 const doors=$$('.door-card,.d-list .door');
 if(reduce||!('IntersectionObserver'in window))doors.forEach(d=>d.classList.add('open'));
 else{const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const d=en.target,i=doors.indexOf(d);setTimeout(()=>d.classList.add('open'),innerWidth>720?i*220:150);io.unobserve(d)}}),{threshold:.55});doors.forEach(d=>io.observe(d))}
+
+/* 사진 없는 블로그 글의 대표 사진 — site.js 와 같은 목록 */
+const BLOG_MEDIA={
+ '221130893960':{video:'Lm217nBZ-EA',by:'대한민국 경찰청 공식 유튜브 「경찰리포트」(2017.3.17)'},
+ '222638025449':'img/ref-blog-1.jpg','222063584649':'img/ref-blog-2.jpg','222044211652':'img/ref-blog-3.jpg',
+ '221144006767':'img/ref-blog-4.jpg','221130897135':'img/ref-blog-5.jpg','221130893265':'img/ref-blog-6.jpg','10172458900':'img/ref-blog-7.jpg'};
+/* 이진숙의 시선 (2026-11-05): 영상은 그 자리에서 재생, 블로그 최신 글은 자동 */
+$$('.ins-card[data-video]').forEach(b=>b.addEventListener('click',()=>{const ph=b.querySelector('.ins-ph');if(ph.querySelector('iframe'))return;const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.video+'?autoplay=1';f.title=b.querySelector('b').textContent;f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;ph.replaceChildren(f)}));
+(async()=>{const list=$('#ins-list');if(!list)return;let j=null,base='';
+ for(const u of ['data/blog.json','../data/blog.json']){try{const r=await fetch(u,{cache:'no-cache'});if(r.ok){j=await r.json();base=u.replace('blog.json','');break}}catch(e){}}
+ const it=j&&j.items&&j.items[0];if(!it)return;
+ const a=document.createElement('a');a.className='ins-card';a.href=it.link;a.target='_blank';a.rel='noopener';
+ const [y,m]=it.date.split('-');
+ a.innerHTML='<span class="ins-ph"><img loading="lazy" alt=""></span><span class="ins-meta">블로그 · '+y+'년 '+(+m)+'월</span><b></b>';
+ const mm=BLOG_MEDIA[it.link.split('/').pop()];a.querySelector('img').src=it.image?base+it.image:(mm&&mm.video?'https://i.ytimg.com/vi/'+mm.video+'/maxresdefault.jpg':(typeof mm==='string'?mm:'img/real-reading.jpg'));a.querySelector('b').textContent=it.title;
+ const im=a.querySelector('img');if(/\/ref-/.test(im.getAttribute('src'))){const n=document.createElement('em');n.className='ins-note';n.textContent='AI 연출 이미지';a.querySelector('.ins-ph').append(n)}
+ list.insertBefore(a,list.children[1]);})();
+/* 따라다니는 문의 버튼: 첫 장면을 지나면 보임 */
+const hf=$('#h-float');
+if(hf){const jn=$('#journey');if(jn&&'IntersectionObserver'in window)new IntersectionObserver(([en])=>hf.classList.toggle('away',en.isIntersecting&&en.intersectionRatio>.2),{threshold:[0,.2,.5]}).observe(jn);else hf.classList.remove('away')}
 })();

@@ -258,6 +258,7 @@ const BLOG_MEDIA={
 const NEEDS=[
  {t:'진술분석이 필요합니다',to:'SIAS',svc:'진술분석 SIAS 의뢰',d:'자료를 사전검토한 뒤 분석 범위와 견적을 안내합니다.',label:'현재 단계',opts:['아직 잘 모르겠습니다','수사 단계','재판 단계','소송 준비','그 외']},
  {t:'프로파일링보고서가 필요합니다',to:'프로파일링',svc:'프로파일링보고서 의뢰',d:'사건 단계와 보유 자료를 알려 주시면 분석 범위·기간·비용을 안내합니다.',label:'현재 단계',opts:['아직 잘 모르겠습니다','수사 단계','재판 단계(1심)','항소심','그 외']},
+ {t:'사건에 대해 전문가 자문이 필요합니다',to:'자문',svc:'전문가 자문 문의',d:'사건 내용과 필요한 자문을 알려 주시면 진행 방법을 안내합니다.',label:'자문 분야',opts:['아직 잘 모르겠습니다','형사사건 자문','사건 관련 자문','관계성 범죄 자문']},
  {t:'나에 대해 알고 싶습니다',to:'심리검사',svc:'상담심리검사 신청',d:'9가지 검사 중 맞는 검사를 안내합니다.',label:'관심 있는 검사',opts:['아직 잘 모르겠습니다',...TESTS.map(t=>t[0]+(t[1]?' ('+t[1]+')':'')),'변화 90일 프로그램']},
  {t:'개인상담·코칭을 받고 싶습니다',to:'상담',svc:'전문가 상담 예약',d:'관계·갈등·자기이해 주제의 1:1 상담입니다.',label:'상담 주제',opts:['아직 잘 모르겠습니다','검사 해석 상담','관계·갈등 상담','1:1 전문가 상담']},
  {t:'기업·기관 강연이 필요합니다',to:'강연',svc:'기업·기관 강연 문의',d:'대상·인원·일정을 알려 주시면 강연안을 보내 드립니다.',label:'참여 대상',opts:['아직 정해지지 않았습니다','기업 CEO·임원','공공기관 리더·관리자','법률·조사 실무자','그 외']},
@@ -276,7 +277,14 @@ if(inqDlg&&kindSel&&ctxSel){
  document.addEventListener('click',e=>{const t=e.target.closest('[data-need]');if(!t)return;e.preventDefault();setMenu(false);openInquiry(+t.dataset.need,t.dataset.test)});
  kindSel.onchange=()=>updateKind();ctxSel.onchange=updateOutput;['#f-name','#f-tel','#inquiry-note'].forEach(s=>{const f=$(s);if(f)f.oninput=updateOutput});
  $('#inquiry-form').onsubmit=e=>e.preventDefault();
- $('#copy-inquiry').onclick=async()=>{try{await navigator.clipboard.writeText($('#inquiry-output').value);$('#copy-status').textContent='복사했습니다. 아래 연락처로 보내 주세요.'}catch(err){const ta=$('#inquiry-output');ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}$('#copy-status').textContent=ok?'복사했습니다. 아래 연락처로 보내 주세요.':'선택된 내용을 길게 눌러 복사해 주세요.'}};
+ /* 문자로 보내기 (2026-11-05 남덕 님): 휴대폰은 문자 앱이 소장님 번호·내용 채운 채로 열림, 컴퓨터는 복사 후 안내 */
+const smsBtn=$('#sms-inquiry');
+if(smsBtn)smsBtn.onclick=async e=>{const body=$('#inquiry-output').value||'[이진숙 프로파일링 연구소 문의]';
+ const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+ if(mobile){const ios=/iPhone|iPad|iPod/i.test(navigator.userAgent);smsBtn.href='sms:01033657464'+(ios?'&':'?')+'body='+encodeURIComponent(body);return}
+ e.preventDefault();try{await navigator.clipboard.writeText(body)}catch(err){}
+ $('#copy-status').textContent='문의 내용을 복사했습니다. 휴대폰에서 누르시면 문자 앱이 바로 열립니다. 컴퓨터에서는 아래 이메일로 보내 주세요.'};
+$('#copy-inquiry').onclick=async()=>{try{await navigator.clipboard.writeText($('#inquiry-output').value);$('#copy-status').textContent='복사했습니다. 아래 연락처로 보내 주세요.'}catch(err){const ta=$('#inquiry-output');ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}$('#copy-status').textContent=ok?'복사했습니다. 아래 연락처로 보내 주세요.':'선택된 내용을 길게 눌러 복사해 주세요.'}};
  /* 다른 페이지에서 contact.html#need-1 처럼 오면 그 항목으로 창을 엽니다 */
  const m=/^#need-(\d)$/.exec(location.hash);if(m&&NEEDS[+m[1]])openInquiry(+m[1]);
 }
