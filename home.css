@@ -362,3 +362,8 @@ ol,ul{padding:0;list-style:none}
 .arch{transition:max-height 1.2s var(--ease)}
 .door.open .arch{max-height:calc(100svh - 420px)}
 @media(max-width:720px){.door.open .arch{max-height:calc(100svh - 400px)}}
+/* 문이 열려도 사진은 제자리(얼굴 크기·위치 그대로), 아래만 줄어듦 (2026-11-06 남덕 님) */
+.d-list .arch img{object-position:50% 18%}
+.door.open .arch img{transform:none}
+@media(max-width:720px){.door.open .arch{max-height:calc(100svh - 380px)}}
+.door.open .d-go{margin-top:0;padding-top:18px}
