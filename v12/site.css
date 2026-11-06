@@ -797,3 +797,14 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .rep-fields.on-light li{min-height:84px;background:linear-gradient(180deg,#3a2a20,#2a1d15);border-color:rgba(217,180,122,.5);color:#f6ead6;font-size:18px;box-shadow:0 8px 20px rgba(42,26,15,.18)}
 .rep-fields.on-light li.hl{background:linear-gradient(135deg,#5a4126,#3a2a1a);border-color:#e3bd7c}
 @media(max-width:720px){.rep-fields.on-light li{min-height:66px;font-size:16px}}
+/* 프로파일링: 숫자 칸 아래 '어떤 자료를 분석하나요' + 분야 4칸 띠 (2026-11-06 남덕 님) */
+.fields-band{margin-top:56px}
+.fields-h{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);letter-spacing:-.015em;line-height:1.3;margin:0 0 20px}
+.fields-dark{background:linear-gradient(180deg,#2a1a0f,#1f140c);border-radius:14px;padding:22px clamp(18px,3vw,30px) 26px;box-shadow:0 12px 30px rgba(42,26,15,.22)}
+.fields-dark>p{margin:0;color:#e9dcc6;font-size:16px}
+.fields-dark>p b{color:#e3bd7c;font-weight:600}
+.fields-dark .rep-fields{max-width:none;margin-top:16px}
+@media(max-width:720px){.fields-band{margin-top:40px}}
+.fields-band .eyebrow{margin-bottom:14px}
+.fields-band .targets{margin-bottom:28px}
+@media(max-width:720px){.fields-band .targets{grid-template-columns:1fr}}
