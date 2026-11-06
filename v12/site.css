@@ -789,3 +789,6 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .rep-fields li{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:64px;padding:10px 8px;border:1px solid rgba(217,180,122,.45);border-radius:10px;background:rgba(255,255,255,.07);color:#f6ead6;font-size:16px;font-weight:600;line-height:1.35;word-break:keep-all}
 .rep-fields li small{display:block;margin-top:3px;font-size:13px;font-weight:400;color:#d8c3a0}
 @media(max-width:720px){.rep-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.rep-fields li{font-size:15px;min-height:58px}}
+/* 강조 분야: 업무상 재해 (2026-11-06 남덕 님) */
+.rep-fields li.hl{border:2px solid #e3bd7c;background:linear-gradient(135deg,rgba(227,189,124,.30),rgba(176,132,64,.22));color:#fff4df;box-shadow:0 0 0 3px rgba(227,189,124,.14),0 8px 20px rgba(0,0,0,.28)}
+.rep-fields li.hl small{color:#f1d9ad}
