@@ -545,7 +545,7 @@ body:has(dialog[open]){overflow:hidden}
 
 /* ===== v7: 여러 페이지 ===== */
 .nav a[aria-current="page"]:not(.cta):after{content:'';position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--ink)}
-.nav a.cta[aria-current="page"]{background:var(--orange)}
+.nav a.cta[aria-current="page"]{background:var(--goldw)}
 .subnav button{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:var(--orange);border-bottom:1px solid transparent;padding:0}
 .subnav button:hover{border-color:currentColor}
 .on-dark .subnav button{color:var(--gold)}
@@ -749,11 +749,11 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 @media(max-width:720px){.q2 .q-body{font-size:15px}.q2 .q-tag{font-size:15px}}
 
 /* 상담/자문 (2026-11-06 남덕 님): 도움 요청 버튼 크게 · 맨 위 상담 버튼과 같은 금색으로 통일 */
-.needs{gap:12px}
-.needs button{min-height:84px;padding:18px 24px;font-size:18px;font-weight:600;line-height:1.4;background:var(--goldw);color:var(--brown);border:0;border-radius:2px}
-.needs button small{font-size:14px;font-weight:500;color:var(--brown);opacity:.72}
+.needs{gap:8px}
+.needs button{min-height:59px;padding:12px 17px;font-size:15px;font-weight:600;line-height:1.4;background:var(--goldw);color:var(--brown);border:0;border-radius:2px}
+.needs button small{font-size:13px;font-weight:500;color:var(--brown);opacity:.72}
 .needs button:hover,.needs button:focus-visible{background:#e8c992;color:var(--brown)}
-@media(max-width:720px){.needs button{min-height:72px;font-size:17px;padding:16px 20px}}
+@media(max-width:720px){.needs button{min-height:50px;font-size:15px;padding:11px 14px}}
 /* 관계성 범죄 자문 세부 (2026-11-06 남덕 님) */
 .adv-list{list-style:decimal;margin:14px 0 0;padding-left:1.4em;font-size:15px;line-height:1.75;color:var(--muted)}
 .adv-list li{display:list-item}.adv-list li::marker{color:var(--orange)}
