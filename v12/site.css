@@ -810,3 +810,7 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 @media(max-width:720px){.fields-band .targets{grid-template-columns:1fr}}
 .sias-targets{margin-top:32px}
 @media(max-width:720px){.sias-targets{grid-template-columns:1fr}}
+/* 근거 뒷받침 한 줄 (2026-11-06 남덕 님) */
+.proof-line{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:40px 0 0;padding:18px 24px;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;background:var(--white);font-size:17px;line-height:1.6;color:var(--ink)}
+.proof-line b{color:var(--orange);font-weight:700;font-size:18px;letter-spacing:.02em;white-space:nowrap}
+@media(max-width:720px){.proof-line{display:block;padding:16px 18px;font-size:16px}.proof-line b{display:block;margin-bottom:4px}}
