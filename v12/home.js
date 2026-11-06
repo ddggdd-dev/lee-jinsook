@@ -97,8 +97,12 @@ const doors=$$('.door-card,.d-list .door');
 if(reduce||!('IntersectionObserver'in window))doors.forEach(d=>d.classList.add('open'));
 else if(doors.length){
  let touched=false,timer=0;
- doors.forEach(d=>{const a=d.querySelector('a');if(!a)return;a.addEventListener('click',e=>{touched=true;clearTimeout(timer);if(!d.classList.contains('open')){e.preventDefault();d.classList.add('open')}})});
- const io=new IntersectionObserver(es=>{if(es.some(en=>en.isIntersecting)&&!touched&&!timer){timer=setTimeout(()=>{if(!touched)doors[0].classList.add('open')},3000);io.disconnect()}},{threshold:.5});
+ /* 문이 열리면 화면을 위로 올려 그 문 아래 글(제목·질문·설명·들어가기)까지 보이게 (2026-11-06 남덕 님) */
+ const lift=d=>{const r=d.getBoundingClientRect(),top=(document.querySelector('header')?.offsetHeight||70)+12,need=r.bottom-(innerHeight-16);
+  let dy=Math.max(0,need);if(r.top-dy<top-r.height*.45)dy=Math.max(0,r.top-(top-r.height*.45));if(dy>4)scrollToY(scrollY+dy,1100)};
+ const openDoor=d=>{d.classList.add('open');setTimeout(()=>lift(d),reduce?0:1250)};
+ doors.forEach(d=>{const a=d.querySelector('a');if(!a)return;a.addEventListener('click',e=>{touched=true;clearTimeout(timer);if(!d.classList.contains('open')){e.preventDefault();openDoor(d)}})});
+ const io=new IntersectionObserver(es=>{if(es.some(en=>en.isIntersecting)&&!touched&&!timer){timer=setTimeout(()=>{if(!touched)openDoor(doors[0])},3000);io.disconnect()}},{threshold:.5});
  io.observe(doors[0].querySelector('.arch')||doors[0]);
 }
 
