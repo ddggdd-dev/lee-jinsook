@@ -758,3 +758,22 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .adv-list{list-style:decimal;margin:14px 0 0;padding-left:1.4em;font-size:15px;line-height:1.75;color:var(--muted)}
 .adv-list li{display:list-item}.adv-list li::marker{color:var(--orange)}
 @media(min-width:721px){.lect.adv{grid-template-columns:repeat(3,1fr)}}
+
+/* 2026-11-06 남덕 님: 우상단 상담 버튼 30% 작게 + 둥근 모양 (PC) */
+@media(min-width:1081px){
+ .nav a.cta{padding:9px 16px;font-size:13px;border-radius:999px;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 4px 12px rgba(0,0,0,.25);letter-spacing:.02em}
+ .nav a.cta:hover{background:#ecc98d}
+}
+/* 2026-11-06 남덕 님: 무엇을 도와드릴까요 — 소장님 사진 + 고르기 상자 끌림 있게 */
+.help-photo{margin:26px 0 0;position:relative;max-width:420px}
+.help-photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 25%;border-radius:14px;box-shadow:0 14px 34px rgba(40,10,0,.35)}
+.help-photo figcaption{position:absolute;left:14px;bottom:14px;padding:7px 14px;border-radius:999px;background:rgba(26,17,11,.78);color:#f3e6d2;font-size:14px;backdrop-filter:blur(4px)}
+.needs{counter-reset:need;gap:12px}
+.needs button{counter-increment:need;position:relative;border-radius:12px;background:linear-gradient(135deg,#ecd3a2 0%,#d9b47a 55%,#c99e5e 100%);box-shadow:0 6px 16px rgba(50,15,5,.22),inset 0 1px 0 rgba(255,255,255,.45);padding:14px 16px 14px 62px;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;cursor:pointer}
+.needs button::before{content:counter(need,decimal-leading-zero);position:absolute;left:14px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--brown);color:var(--goldw);font-size:13px;font-weight:700;letter-spacing:0}
+.needs button small{padding:5px 11px;border-radius:999px;background:rgba(26,17,11,.12);opacity:1;font-size:13px;color:var(--brown)}
+.needs button:hover,.needs button:focus-visible{transform:translateY(-3px);background:linear-gradient(135deg,#f4dfb4 0%,#e3c088 55%,#d2a868 100%);box-shadow:0 12px 26px rgba(50,15,5,.32),inset 0 1px 0 rgba(255,255,255,.55)}
+.needs button:hover small,.needs button:focus-visible small{background:var(--brown);color:var(--goldw)}
+@media(max-width:720px){.needs button{padding:12px 14px 12px 58px}.help-photo{max-width:none}}
+@media(prefers-reduced-motion:reduce){.needs button{transition:none}.needs button:hover{transform:none}}
+@media(max-width:720px){.help-photo{margin-top:20px}.help-photo img{aspect-ratio:16/9;object-position:50% 22%}}
