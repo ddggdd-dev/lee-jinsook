@@ -783,3 +783,9 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .philo q.philo-big{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1.25;letter-spacing:-.02em;color:var(--ink)}
 .philo q.philo-big .mun-gold{color:#b08440;font-weight:900}
 @media(max-width:720px){.philo q.philo-big{font-size:38px}}
+
+/* 프로파일링보고서 분야 4칸 (2026-11-06 남덕 님) */
+.rep-fields{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:620px}
+.rep-fields li{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:64px;padding:10px 8px;border:1px solid rgba(217,180,122,.45);border-radius:10px;background:rgba(255,255,255,.07);color:#f6ead6;font-size:16px;font-weight:600;line-height:1.35;word-break:keep-all}
+.rep-fields li small{display:block;margin-top:3px;font-size:13px;font-weight:400;color:#d8c3a0}
+@media(max-width:720px){.rep-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.rep-fields li{font-size:15px;min-height:58px}}
