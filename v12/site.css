@@ -779,3 +779,7 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 @media(max-width:720px){.needs button{padding:12px 14px 12px 58px}.help-photo{max-width:none}}
 @media(prefers-reduced-motion:reduce){.needs button{transition:none}.needs button:hover{transform:none}}
 @media(max-width:720px){.help-photo{margin-top:20px}.help-photo img{aspect-ratio:16/9;object-position:50% 22%}}
+/* 연구소 철학 (2026-11-06 남덕 님 "글씨 크고 굵게"): Noto Serif KR 700 — 門 인장과 어울리는 굵은 명조 */
+.philo q.philo-big{font-family:'Noto Serif KR',serif;font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1.25;letter-spacing:-.02em;color:var(--ink)}
+.philo q.philo-big .mun-gold{color:#b08440;font-weight:900}
+@media(max-width:720px){.philo q.philo-big{font-size:38px}}
