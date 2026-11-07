@@ -367,3 +367,7 @@ ol,ul{padding:0;list-style:none}
 .door.open .arch img{transform:none}
 @media(max-width:720px){.door.open .arch{max-height:calc(100svh - 380px)}}
 .door.open .d-go{margin-top:0;padding-top:18px}
+
+/* 2026-11-07 남덕 님: AI 연출 이미지 표시를 작고 은은하게(정직 규칙상 표시는 유지, 크기·진하기만 줄임) */
+.note-img,.note{font-size:10.5px!important;letter-spacing:.01em!important;color:rgba(255,255,255,.62)!important;text-shadow:0 0 3px rgba(0,0,0,.55)!important;background:none!important;padding:0!important;line-height:1.3!important}
+.note-img{top:auto!important;left:auto!important;right:8px!important;bottom:6px!important;transform:none!important}
