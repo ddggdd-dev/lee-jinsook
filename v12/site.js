@@ -277,13 +277,21 @@ if(inqDlg&&kindSel&&ctxSel){
  document.addEventListener('click',e=>{const t=e.target.closest('[data-need]');if(!t)return;e.preventDefault();setMenu(false);openInquiry(+t.dataset.need,t.dataset.test)});
  kindSel.onchange=()=>updateKind();ctxSel.onchange=updateOutput;['#f-name','#f-tel','#inquiry-note'].forEach(s=>{const f=$(s);if(f)f.oninput=updateOutput});
  $('#inquiry-form').onsubmit=e=>e.preventDefault();
- /* 문자로 보내기 (2026-11-05 남덕 님): 휴대폰은 문자 앱이 소장님 번호·내용 채운 채로 열림, 컴퓨터는 복사 후 안내 */
-const smsBtn=$('#sms-inquiry');
-if(smsBtn)smsBtn.onclick=async e=>{const body=$('#inquiry-output').value||'[이진숙 프로파일링 연구소 문의]';
- const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
- if(mobile){const ios=/iPhone|iPad|iPod/i.test(navigator.userAgent);smsBtn.href='sms:01033657464'+(ios?'&':'?')+'body='+encodeURIComponent(body);return}
- e.preventDefault();try{await navigator.clipboard.writeText(body)}catch(err){}
- $('#copy-status').textContent='문의 내용을 복사했습니다. 휴대폰에서 누르시면 문자 앱이 바로 열립니다. 컴퓨터에서는 아래 이메일로 보내 주세요.'};
+ /* 보내기 (2026-11-07 남덕 님 1안): 휴대폰 = 이진숙 소장 휴대폰(010-3365-7464)으로 보낼 문자 창이 내용 채운 채로 열림,
+    컴퓨터 = 문자를 보낼 수 없으므로 같은 버튼이 '이메일로 보내기'가 되어 제목·내용이 채워진 메일 창이 열림 */
+const smsBtn=$('#sms-inquiry'),MAIL='moon.profiling@gmail.com',SMS_TO='01033657464';
+const isMobile=/Android|iPhone|iPod|Mobile/i.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+const sendBody=()=>$('#inquiry-output')?.value||'[이진숙 프로파일링 연구소 문의]';
+if(smsBtn){
+ const hint=document.createElement('p');hint.className='send-hint';
+ if(isMobile){smsBtn.textContent='문자로 보내기';hint.textContent='누르면 이진숙 소장 휴대폰으로 보낼 문자 창이 열립니다. 문자 앱에서 전송을 눌러 주세요.'}
+ else{smsBtn.textContent='이메일로 보내기';hint.textContent='누르면 '+MAIL+'으로 보낼 메일 창이 열립니다. 메일 프로그램에서 보내기를 눌러 주세요. 휴대폰에서 이 페이지를 열면 문자로 보낼 수 있습니다.'}
+ smsBtn.insertAdjacentElement('afterend',hint);
+ smsBtn.onclick=()=>{const body=sendBody();
+  if(isMobile){smsBtn.href='sms:'+SMS_TO+'?&body='+encodeURIComponent(body);return}
+  smsBtn.href='mailto:'+MAIL+'?subject='+encodeURIComponent('[이진숙 프로파일링 연구소 문의]')+'&body='+encodeURIComponent(body);
+  $('#copy-status').textContent='메일 창이 열리지 않으면 "문의 내용 복사"를 누른 뒤 '+MAIL+'으로 보내 주세요.'};
+}
 $('#copy-inquiry').onclick=async()=>{try{await navigator.clipboard.writeText($('#inquiry-output').value);$('#copy-status').textContent='복사했습니다. 아래 연락처로 보내 주세요.'}catch(err){const ta=$('#inquiry-output');ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}$('#copy-status').textContent=ok?'복사했습니다. 아래 연락처로 보내 주세요.':'선택된 내용을 길게 눌러 복사해 주세요.'}};
  /* 다른 페이지에서 contact.html#need-1 처럼 오면 그 항목으로 창을 엽니다 */
  const m=/^#need-(\d)$/.exec(location.hash);if(m&&NEEDS[+m[1]])openInquiry(+m[1]);
