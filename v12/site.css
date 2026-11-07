@@ -877,3 +877,13 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
  .as-law li{grid-template-columns:96px 1fr;font-size:14.5px}
  .as-quote p{font-size:18px}
 }
+
+/* 2026-11-07 남덕 님: 진술분석 예시 제목을 카드 위로 · 안내 문구 */
+.sheet-wrap{min-width:0}
+.sheet-cap{margin:0 0 12px;font-size:16px;color:var(--muted)}
+.sheet-cap b{color:var(--orange);font-weight:700;margin-right:6px}
+.sheet-top{justify-content:flex-end}
+.sheet-hint{font-size:14px;color:var(--muted)}
+/* 2026-11-07 남덕 님: 전문가 자문 분류 표시를 버튼 모양으로, 글씨 2배 */
+.lect.adv small{display:inline-flex;align-items:center;min-height:52px;padding:6px 22px;border-radius:999px;border:1.5px solid #c99e5e;background:#f3e6cf;color:#7a4a1e;font-size:26px;font-weight:600;letter-spacing:0;line-height:1.2}
+@media(max-width:720px){.lect.adv small{font-size:20px;min-height:44px;padding:5px 18px}}
