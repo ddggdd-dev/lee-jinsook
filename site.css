@@ -905,3 +905,6 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 
 /* 2026-11-07 남덕 님·성식 님: AI 안내 한 줄을 짧고 눈에 덜 띄게(안내는 유지) */
 .ai-note{font-size:11px!important;color:rgba(160,145,125,.55)!important;letter-spacing:.01em}
+
+/* 보내기 안내 한 줄 (2026-11-07) */
+.send-hint{margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
