@@ -62,7 +62,7 @@ function paint(t){
  const c=1-clamp(p/.14);copy.style.opacity=c;copy.style.transform=`translateY(${-p*60}px)`;copy.style.visibility=c>0?'visible':'hidden';
  hint.style.opacity=c;skip.style.opacity=c;skip.style.visibility=c>.05?'visible':'hidden';
  const r=clamp((p-.8)/.14);inside.style.opacity=r;inside.style.transform=`translateY(${20*(1-r)}px)`;inside.classList.toggle('on',r>.5);room.style.setProperty('--io',r);
- note.style.opacity=clamp((p-.6)/.2);
+ if(note)note.style.opacity=clamp((p-.6)/.2);
  top.classList.toggle('solid',journey.getBoundingClientRect().bottom<H*.4);
 }
 function resize(){W=stage.clientWidth;H=stage.clientHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=W*dpr;canvas.height=H*dpr;paint(performance.now())}
