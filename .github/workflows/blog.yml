@@ -1,7 +1,7 @@
 name: 블로그 글 가져오기
 on:
   schedule:
-    - cron: "7 21 * * *"   # 매일 06:07 (한국 시간)
+    - cron: "17 * * * *"   # 매시간 17분 — 새 글이 올라오면 한 시간 안에 인사이트에 표시 (2026-11-07 남덕 님)
   workflow_dispatch:
   push:
     paths: [".github/workflows/blog.yml", ".github/scripts/blog.mjs"]
