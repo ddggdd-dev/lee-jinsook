@@ -62,7 +62,7 @@ function paint(t){
  const c=1-clamp(p/.14);copy.style.opacity=c;copy.style.transform=`translateY(${-p*60}px)`;copy.style.visibility=c>0?'visible':'hidden';
  hint.style.opacity=c;skip.style.opacity=c;skip.style.visibility=c>.05?'visible':'hidden';
  const r=clamp((p-.8)/.14);inside.style.opacity=r;inside.style.transform=`translateY(${20*(1-r)}px)`;inside.classList.toggle('on',r>.5);room.style.setProperty('--io',r);
- note.style.opacity=clamp((p-.6)/.2);
+ if(note)note.style.opacity=clamp((p-.6)/.2);
  top.classList.toggle('solid',journey.getBoundingClientRect().bottom<H*.4);
 }
 function resize(){W=stage.clientWidth;H=stage.clientHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=W*dpr;canvas.height=H*dpr;paint(performance.now())}
@@ -118,7 +118,7 @@ $$('.ins-card[data-video]').forEach(b=>b.addEventListener('click',()=>{const ph=
  const [y,m]=it.date.split('-');
  a.innerHTML='<span class="ins-ph"><img loading="lazy" alt=""></span><span class="ins-meta">블로그 · '+y+'년 '+(+m)+'월</span><b></b>';
  const mm=BLOG_MEDIA[it.link.split('/').pop()];a.querySelector('img').src=it.image?base+it.image:(mm&&mm.video?'https://i.ytimg.com/vi/'+mm.video+'/maxresdefault.jpg':(typeof mm==='string'?mm:'img/real-reading.jpg'));a.querySelector('b').textContent=it.title;
- const im=a.querySelector('img');if(/\/ref-/.test(im.getAttribute('src'))){const n=document.createElement('em');n.className='ins-note';n.textContent='AI 연출 이미지';a.querySelector('.ins-ph').append(n)}
+ const im=a.querySelector('img');/* 사진별 AI 표시는 뺌(2026-11-07) — 바닥글 한 줄로 알림 */
  list.insertBefore(a,list.children[1]);})();
 /* 따라다니는 문의 버튼: 첫 장면을 지나면 보임 */
 const hf=$('#h-float');
