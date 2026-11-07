@@ -98,7 +98,13 @@ if(reduce||!('IntersectionObserver'in window))doors.forEach(d=>d.classList.add('
 else if(doors.length){
  let touched=false,timer=0;
  /* 문이 열리면 화면은 그대로 두고, 문 높이만 줄어 아래 글이 올라옴 (2026-11-06 남덕 님: 사진·화면이 같이 올라가지 않게) */
- const openDoor=d=>d.classList.add('open');
+ /* 휴대폰(2026-11-07 남덕 님): 문이 열리면 화면이 위로 올라가 그 문의 제목·질문이 보이게. 네 문 모두 같음.
+    문이 줄어드는 높이를 미리 계산해 함께 움직이고, 떠 있는 상담 버튼에 가리지 않게 아래 여유를 둠 */
+ const liftMobile=d=>{if(innerWidth>720)return;const arch=d.querySelector('.arch'),q=d.querySelector('.d-q')||d.querySelector('h3');if(!arch||!q)return;
+  const a=arch.getBoundingClientRect(),natural=a.width*4.3/3,finalH=Math.max(300,Math.min(natural,innerHeight-380)),shrink=Math.max(0,a.height-finalH);
+  const qBottom=q.getBoundingClientRect().bottom-shrink,limit=innerHeight-104,head=(document.querySelector('header')?.offsetHeight||64)+8;
+  let dy=qBottom-limit;if(dy<=4)return;dy=Math.min(dy,a.top-head+a.height*.35);if(dy>4)scrollToY(scrollY+dy,900)};
+ const openDoor=d=>{d.classList.add('open');setTimeout(()=>liftMobile(d),reduce?0:250)};
  doors.forEach(d=>{const a=d.querySelector('a');if(!a)return;a.addEventListener('click',e=>{touched=true;clearTimeout(timer);if(!d.classList.contains('open')){e.preventDefault();openDoor(d)}})});
  const io=new IntersectionObserver(es=>{if(es.some(en=>en.isIntersecting)&&!touched&&!timer){timer=setTimeout(()=>{if(!touched)openDoor(doors[0])},3000);io.disconnect()}},{threshold:.5});
  io.observe(doors[0].querySelector('.arch')||doors[0]);
@@ -118,7 +124,7 @@ $$('.ins-card[data-video]').forEach(b=>b.addEventListener('click',()=>{const ph=
  const [y,m]=it.date.split('-');
  a.innerHTML='<span class="ins-ph"><img loading="lazy" alt=""></span><span class="ins-meta">블로그 · '+y+'년 '+(+m)+'월</span><b></b>';
  const mm=BLOG_MEDIA[it.link.split('/').pop()];a.querySelector('img').src=it.image?base+it.image:(mm&&mm.video?'https://i.ytimg.com/vi/'+mm.video+'/maxresdefault.jpg':(typeof mm==='string'?mm:'img/real-reading.jpg'));a.querySelector('b').textContent=it.title;
- const im=a.querySelector('img');/* 사진별 AI 표시는 뺌(2026-11-07) — 바닥글 한 줄로 알림 */
+ const im=a.querySelector('img');/* 사진마다 붙이던 AI 표시는 2026-11-07 성식 님 결정으로 뺌 — 바닥글 한 줄로 알림 */
  list.insertBefore(a,list.children[1]);})();
 /* 따라다니는 문의 버튼: 첫 장면을 지나면 보임 */
 const hf=$('#h-float');
