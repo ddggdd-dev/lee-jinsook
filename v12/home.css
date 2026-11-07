@@ -376,3 +376,9 @@ ol,ul{padding:0;list-style:none}
 .d2-banner{grid-column:1/-1;position:relative;margin:0 0 8px;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px -22px rgba(20,32,31,.55)}
 .d2-banner img{display:block;width:100%;height:auto;aspect-ratio:1376/600;object-fit:cover}
 .d2-banner .note{right:10px;bottom:8px}
+
+/* 휴대폰 네 개의 문: 옆 문과 간격 넉넉하게 (2026-11-07 남덕 님) */
+@media(max-width:720px){
+ .d-list{gap:22px;padding:0 24px 8px;scroll-padding:0 24px}
+ .door{flex:0 0 74%}
+}
