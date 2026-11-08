@@ -908,3 +908,12 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 
 /* 보내기 안내 한 줄 (2026-11-07) */
 .send-hint{margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
+
+/* 연구소 소개 (2026-11-08 남덕 님): 철학 칸을 사진 아래로 · 라벨을 버튼 모양으로 크게 */
+.about-left{min-width:0}
+.about-left .portrait{position:relative;top:0}
+.about-left .philo{margin-top:30px;padding-top:26px;display:block}
+.about-left .philo q.philo-big{font-size:clamp(34px,3.3vw,48px)}
+#about .eyebrow,#about .career h4{display:inline-flex;align-items:center;min-height:46px;padding:6px 20px;border-radius:999px;border:1.5px solid #c99e5e;background:#f3e6cf;color:#7a4a1e;font-size:18px;font-weight:700;letter-spacing:.04em;line-height:1.2}
+#about .career h4{margin-bottom:14px}
+@media(max-width:720px){.about-left .philo{margin:26px 0 36px}.about-left .philo q.philo-big{font-size:34px}#about .eyebrow,#about .career h4{font-size:16px;min-height:42px;padding:5px 16px}}
