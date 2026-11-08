@@ -917,3 +917,9 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 #about .eyebrow,#about .career h4{display:inline-flex;align-items:center;min-height:46px;padding:6px 20px;border-radius:999px;border:1.5px solid #c99e5e;background:#f3e6cf;color:#7a4a1e;font-size:18px;font-weight:700;letter-spacing:.04em;line-height:1.2}
 #about .career h4{margin-bottom:14px}
 @media(max-width:720px){.about-left .philo{margin:26px 0 36px}.about-left .philo q.philo-big{font-size:34px}#about .eyebrow,#about .career h4{font-size:16px;min-height:42px;padding:5px 16px}}
+
+/* 연구소 소개 소장님 사진 크게 — 가슴 아래까지 (2026-11-08 남덕 님) */
+#about .about-left .portrait{height:800px}
+#about .about-left .portrait img{object-position:50% 0!important}
+@media(max-width:820px){#about .about-left .portrait{height:640px}}
+@media(max-width:520px){#about .about-left .portrait{height:600px}}
