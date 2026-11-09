@@ -19,6 +19,7 @@ async function photoFor(no, desc) {
   if (yt) cands.push(`https://i.ytimg.com/vi/${yt}/hqdefault.jpg`);
   for (const m of body.matchAll(/https?:\/\/(?:postfiles|blogfiles|mblogthumb-phinf|blogthumb)\.pstatic\.net\/[^"'\s)<>\\]+/g)) cands.push(m[0]);
   const d = (desc.match(/<img[^>]+src="([^"]+)"/) || [])[1]; if (d) cands.push(d);
+  if (process.env.BLOG_DEBUG && no === process.env.BLOG_DEBUG) { console.log("후보:", cands.length); cands.forEach((c, i) => console.log(" ", i, c.slice(0, 150))); const t = (html.match(/property="og:title"\s+content="([^"]+)"/) || [])[1]; console.log("og제목:", t); }
   for (let u of cands) {
     u = unent(u).replace(/\?type=\w+$/, "");
     if (/blog_profile|profile|og_default|noimage|static\/blog|spc\.gif/i.test(u)) continue;
