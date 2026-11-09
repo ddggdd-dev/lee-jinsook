@@ -7,19 +7,20 @@ const pick = (s, tag) => { const m = s.match(new RegExp(`<${tag}>([\\s\\S]*?)</$
 const text = h => h.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 const kst = d => new Date(new Date(d).getTime() + 9 * 3600e3).toISOString().slice(0, 10);
 const unent = s => s.replace(/&amp;/g, "&");
+const freshDesc = {};
 async function photoFor(no, desc) {
   // 글 속 사진(postfiles/blogfiles) → 글 속 유튜브 썸네일 → RSS 본문 사진 → og:image 순서
   let html = "";
   try { html = await (await fetch(`https://m.blog.naver.com/PostView.naver?blogId=hmimo&logNo=${no}`, { headers: UA })).text(); } catch {}
   const cands = [];
   const og = (html.match(/property="og:image"\s+content="([^"]+)"/) || [])[1];
-  if (og && !/\/static\//.test(og)) cands.push(og);                     // 글마다 다른 대표 사진(blogthumb)
+  const od = (html.match(/property="og:description"\s+content="([^"]*)"/) || [])[1]; if (od) freshDesc[no] = od;
+  if (og && !/\/static\//.test(og)) { if (/blogthumb\.pstatic\.net/.test(og)) cands.push(og.replace(/^https?:\/\/blogthumb\.pstatic\.net/, "https://mblogthumb-phinf.pstatic.net")); cands.push(og); }   // 블로그에서 고른 대표 썸네일(2026-11-09: blogthumb 주소는 w800 이 안 받혀 본문 첫 사진으로 밀렸음)                     // 글마다 다른 대표 사진(blogthumb)
   const body = html.replace(/<script[\s\S]*?<\/script>/g, "");           // 광고 배너(스크립트 안) 제외
   const yt = (body.match(/(?:youtube\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/) || [])[1];
   if (yt) cands.push(`https://i.ytimg.com/vi/${yt}/hqdefault.jpg`);
   for (const m of body.matchAll(/https?:\/\/(?:postfiles|blogfiles|mblogthumb-phinf|blogthumb)\.pstatic\.net\/[^"'\s)<>\\]+/g)) cands.push(m[0]);
   const d = (desc.match(/<img[^>]+src="([^"]+)"/) || [])[1]; if (d) cands.push(d);
-  if (process.env.BLOG_DEBUG && no === process.env.BLOG_DEBUG) { console.log("후보:", cands.length); cands.forEach((c, i) => console.log(" ", i, c.slice(0, 150))); const t = (html.match(/property="og:title"\s+content="([^"]+)"/) || [])[1]; console.log("og제목:", t); }
   for (let u of cands) {
     u = unent(u).replace(/\?type=\w+$/, "");
     if (/blog_profile|profile|og_default|noimage|static\/blog|spc\.gif/i.test(u)) continue;
@@ -31,20 +32,18 @@ async function photoFor(no, desc) {
       if (buf.length < 5000) continue;
       fs.mkdirSync("data/blog-img", { recursive: true });
       fs.writeFileSync(`data/blog-img/${no}.jpg`, buf);
-      console.log(`사진 ${no}: ${u.slice(0, 140)}`);
       return `blog-img/${no}.jpg`;
     } catch {}
   }
   return null;
 }
-console.log("RSS 갱신 시각:", pick(xml, "lastBuildDate"));
 const raw = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(m => m[1]);
 const items = [];
 for (const it of raw.slice(0, 20)) {
   const link = unent(pick(it, "link")).split("?")[0];
   if (!link.startsWith("https://blog.naver.com/")) continue;
   const no = link.split("/").pop(), desc = pick(it, "description"), d = text(desc);
-  items.push({ title: text(pick(it, "title")), link, date: kst(pick(it, "pubDate")), summary: d.length > 120 ? d.slice(0, 118) + "…" : d, image: await photoFor(no, desc) });
+  items.push({ title: text(pick(it, "title")), link, date: kst(pick(it, "pubDate")), summary: "", image: await photoFor(no, desc) }); { const it = items[items.length - 1], f = freshDesc[no] ? text(freshDesc[no]) : d; it.summary = f.length > 120 ? f.slice(0, 118) + "…" : f; }
 }
 if (!items.length) { console.error("RSS에서 글을 못 찾음 — 기존 파일 유지"); process.exit(0); }
 // 여러 글에 똑같은 사진이 걸리면(블로그 기본 사진) 그 사진은 버린다
