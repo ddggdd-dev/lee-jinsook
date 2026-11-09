@@ -30,11 +30,13 @@ async function photoFor(no, desc) {
       if (buf.length < 5000) continue;
       fs.mkdirSync("data/blog-img", { recursive: true });
       fs.writeFileSync(`data/blog-img/${no}.jpg`, buf);
+      console.log(`사진 ${no}: ${u.slice(0, 140)}`);
       return `blog-img/${no}.jpg`;
     } catch {}
   }
   return null;
 }
+console.log("RSS 갱신 시각:", pick(xml, "lastBuildDate"));
 const raw = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(m => m[1]);
 const items = [];
 for (const it of raw.slice(0, 20)) {
