@@ -171,9 +171,11 @@ if(menu&&nav){
 
 /* 심리검사 9가지 (가안 이름 그대로) — 문의 정리 창의 '관심 있는 검사'에도 씁니다 */
 const TESTS=[["관계소통 유형 프로파일링","사랑의 언어","내가 사랑을 표현하고 받는 방식","관계"],["감정 네이밍","","지금 내 감정에 정확한 이름 붙이기","정서"],["욕구진단검사","","나를 움직이는 핵심 욕구 찾기","동기"],["스트레스검사","","현재 스트레스 수준과 요인 확인","정서"],["우울검사","","우울 신호 자가점검","정서"],["심리지배 테스트","가스라이팅","관계 속 심리적 통제 신호 점검","관계"],["참과 거짓 판별","진술분석","말과 진술의 신빙성 신호 읽기","SIAS"],["에니어그램","","9가지 성격 유형으로 보는 나","성격"],["셀프프로파일링","BBSP-S60 · SP-CHANGE","나의 패턴을 이해하고 실천을 설계합니다","변화"]];
+/* 01 사랑의 언어: 바로 할 수 있는 온라인 검사로 연결 (2026-11-10 남덕 님) */
+const LOVE_URL='https://emotion.master1.kr/tests/love-language';
 const testGrid=$('#testGrid');
-if(testGrid)testGrid.replaceChildren(...TESTS.map((t,i)=>{const self=i===8;const b=self?el('a','test'):el('button','test');if(self)b.href='profiling.html#sp-change';else{b.type='button';b.dataset.need='2';b.dataset.test=t[0]}
- b.append(el('span','no',String(i+1).padStart(2,'0')));const d=el('div');const h=el('h4',null,t[0]);if(t[1])h.append(el('i',null,t[1]));d.append(h,el('p',null,t[2]),el('span','pill',t[3]+' · '+(self?'프로그램 보기 →':'검사 신청 ↗')));b.append(d);return b}));
+if(testGrid)testGrid.replaceChildren(...TESTS.map((t,i)=>{const self=i===8,love=i===0;const b=(self||love)?el('a','test'+(love?' test-live':'')):el('button','test');if(self)b.href='profiling.html#sp-change';else if(love){b.href=LOVE_URL;b.target='_blank';b.rel='noopener'}else{b.type='button';b.dataset.need='2';b.dataset.test=t[0]}
+ b.append(el('span','no',String(i+1).padStart(2,'0')));const d=el('div');const h=el('h4',null,t[0]);if(t[1])h.append(el('i',i===0?'live':null,t[1]));d.append(h,el('p',null,t[2]),el('span','pill',t[3]+' · '+(self?'프로그램 보기 →':love?'지금 검사하기 ↗':'검사 신청 ↗')));b.append(d);return b}));
 
 /* 진술 예시 밑줄 (진술분석 페이지) */
 const NOTES=[["a · 모호한 표현","“있었다” 대신 “있었던 것 같다”. 자기 행적을 확신하지 않는 표현은 정밀 확인 지점입니다."],["b · 진실성 강조","“솔직히 말하면”처럼 진실함을 따로 강조하면 앞뒤 문장의 확인 우선순위가 올라갑니다."],["c · 거리두기 호칭","이름 대신 “그 사람”. 대상과의 심리적 거리를 드러내는 단서입니다."],["d · 설명 없는 시간 공백","“그리고 나서”가 건너뛴 시간이 질문의 출발점입니다."]];
