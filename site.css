@@ -937,33 +937,23 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .band .eyebrow,.hero .eyebrow,.lecture-copy .eyebrow,.contact .eyebrow,.ins .k,.who .k,.knock .k,.journey .k,.as-hero .eyebrow{background:rgba(227,189,124,.14);border-color:#e3bd7c;color:#f3dcb0!important}
 @media(max-width:720px){.eyebrow,.k,.stat small,.targets h4,.lect small,.career h4{font-size:15px!important;min-height:38px;padding:4px 14px!important}}
 
-/* 2026-11-11 남덕 님: 프로파일링 보고서 1장(표지)·2장(목차)을 세로 A4 두 장 한 줄로 */
-.rep-pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;max-width:860px;margin:56px auto 8px}
-.rep-page{position:relative;margin:0;aspect-ratio:210/297;background:#fffdf8;border:1px solid #e3d8c6;box-shadow:0 18px 40px -18px rgba(42,26,15,.35),0 2px 0 #efe6d6;padding:9% 9% 12%;display:flex;flex-direction:column;overflow:hidden}
-.rep-page figcaption{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:13px;color:var(--muted);letter-spacing:.08em}
-.rep-cover{align-items:center;text-align:center;justify-content:center;background:linear-gradient(180deg,#1f150d,#120c07);border-color:#3a2a1c}
-.rep-cover img{width:42%;height:auto;margin-bottom:8%}
-.rep-cover h4{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(22px,2.6vw,32px);color:#f3dcb0;letter-spacing:.06em}
-.rep-cover .rp-inst{margin:10% 0 0;font-family:var(--serif);font-size:clamp(14px,1.4vw,17px);color:#efe3cf}
+
+/* 2026-11-11 남덕 님: 프로파일링 보고서 1장(표지)·2장(목차) — 세로 A4 두 장 한 줄. 글씨는 장 폭에 비례(cqw)해 휴대폰도 PC와 똑같이 줄어든 모양 */
+.rep-pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2.4vw,28px);max-width:860px;margin:56px auto 8px}
+.rep-page{container-type:inline-size;position:relative;margin:0;aspect-ratio:210/297;background:#fffdf8;border:1px solid #e3d8c6;box-shadow:0 18px 40px -18px rgba(42,26,15,.35),0 2px 0 #efe6d6;padding:10% 9%;display:flex;flex-direction:column;overflow:hidden}
+.rep-cover{align-items:center;text-align:center;background:linear-gradient(180deg,#1f150d,#120c07);border-color:#3a2a1c;padding:16% 8% 12%}
+.rep-cover h4{margin:0;font-family:var(--serif);font-weight:700;font-size:7.6cqw;color:#f3dcb0;letter-spacing:.06em;line-height:1.3}
+.rep-cover img{width:40%;height:auto;margin:auto 0 8%}
+.rep-cover .rp-inst{margin:0;font-family:var(--serif);font-size:4.2cqw;color:#efe3cf}
 .rep-cover .rp-inst b{color:#e3bd7c}
-.rep-cover .rp-en{margin:6px 0 0;font-size:clamp(9px,.9vw,11px);letter-spacing:.18em;color:#bfa77f}
-.rep-cover .rp-tag{margin:9% 0 0;font-family:var(--serif);font-size:clamp(13px,1.3vw,16px);color:#e3bd7c}
-.rep-cover figcaption{color:#bfa77f}
-.rep-toc h4{margin:0 0 7%;text-align:center;font-family:var(--serif);font-weight:700;font-size:clamp(18px,2vw,24px);letter-spacing:.5em;color:var(--ink);border-bottom:1px solid #c99e5e;padding-bottom:4%}
-.rp-list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(6px,1vw,12px);font-size:clamp(10px,1.05vw,13px);line-height:1.5;color:var(--ink)}
+.rep-cover .rp-en{margin:1.6cqw 0 0;font-size:2.5cqw;letter-spacing:.16em;color:#bfa77f}
+.rep-cover .rp-tag{margin:11% 0 0;font-family:var(--serif);font-size:4cqw;color:#e3bd7c}
+.rep-toc h4{margin:0 0 6%;text-align:center;font-family:var(--serif);font-weight:700;font-size:5.8cqw;letter-spacing:.5em;color:var(--ink);border-bottom:1px solid #c99e5e;padding-bottom:4%}
+.rp-list{list-style:none;margin:0;padding:0;display:grid;gap:2.6cqw;font-size:3.05cqw;line-height:1.5;color:var(--ink)}
 .rp-list b{display:block;font-family:var(--serif);font-weight:700;font-size:1.15em;color:#7a4a1e}
 .rp-list span{display:block;padding-left:1.2em;color:#4a3a2c}
-@media(max-width:720px){.rep-pages{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:40px}.rep-page{padding:8% 7% 13%}.rp-list{font-size:8.5px;gap:4px}.rep-page figcaption{font-size:11px;bottom:6px}}
 
-/* 보고서 두 장: 목차 아래 여백(장 번호와 안 겹치게)·휴대폰 표지 글씨 맞춤 */
-.rep-toc{padding-bottom:14%}
-@media(max-width:720px){
- .rep-cover{padding:8% 6% 14%}
- .rep-cover img{width:30%;margin-bottom:6%}
- .rep-cover h4{font-size:16px;letter-spacing:.02em}
- .rep-cover .rp-inst{font-size:10.5px;margin-top:8%}
- .rep-cover .rp-en{font-size:6.5px;letter-spacing:.08em}
- .rep-cover .rp-tag{font-size:11px;margin-top:7%}
- .rep-toc h4{font-size:15px;letter-spacing:.3em;margin-bottom:6%}
- .rp-list{font-size:10px;gap:6px}.rp-list b{font-size:1.05em}.rp-list span{display:none}
-}
+/* 목차: 아래 빈 곳까지 넉넉하게 펼침 (2026-11-11 남덕 님) */
+.rep-toc{padding-bottom:9%}
+.rep-toc .rp-list{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:0;font-size:3.25cqw;line-height:1.75}
+.rep-toc .rp-list b{margin-bottom:.6cqw}
