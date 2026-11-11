@@ -15,7 +15,7 @@ const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className
    - "list": (선택) 번호 목록 배열,  "after": (선택) 목록 뒤 문단 배열
    - "image": { "src": "img/파일.jpg", "alt": "사진 설명", "note": "사진 표시(예: AI 연출 이미지)" }
    - "link": (선택) { "url": "https://…", "text": "버튼 글자" }   ("blank": true 면 아직 받지 못한 자리로 표시)
-   - "cta": (선택) { "href": "sias.html", "text": "관련 서비스로 가는 버튼 글자" }  — 다른 페이지는 파일 이름으로
+   - "cta": (선택) { "href": "sias", "text": "관련 서비스로 가는 버튼 글자" }  — 다른 페이지는 파일 이름으로
    사진은 drafts/img/ 에 넣고 "img/파일.jpg" 로 적습니다. 사례 글은 공개 동의를 받은 뒤, 개인을 알아볼 수 없게 정리해 올립니다.
    ================================================================ */
 const POSTS=[
@@ -35,7 +35,7 @@ const POSTS=[
    "note": "표지 시안"
   },
   "cta": {
-   "href": "index.html#dest",
+   "href": "./#dest",
    "text": "이진숙의 행선지 보기"
   }
  },
@@ -56,7 +56,7 @@ const POSTS=[
    "note": false
   },
   "cta": {
-   "href": "contact.html",
+   "href": "contact",
    "text": "오픈식 문의하기"
   }
  },
@@ -79,7 +79,7 @@ const POSTS=[
    "text": "예스24에서 책 보기 ↗"
   },
   "cta": {
-   "href": "about.html",
+   "href": "about",
    "text": "연구소 소개 보기"
   }
  },
@@ -103,7 +103,7 @@ const POSTS=[
    "text": "유튜브에서 보기"
   },
   "cta": {
-   "href": "edu.html",
+   "href": "edu",
    "text": "교육·강연 알아보기"
   }
  },
@@ -154,7 +154,7 @@ const POSTS=[
    "note": false
   },
   "cta": {
-   "href": "sias.html",
+   "href": "sias",
    "text": "SIAS 진술분석 알아보기"
   }
  }
@@ -174,7 +174,7 @@ const TESTS=[["관계소통 유형 프로파일링","사랑의 언어","내가 �
 /* 01 사랑의 언어: 바로 할 수 있는 온라인 검사로 연결 (2026-11-10 남덕 님) */
 const LOVE_URL='https://emotion.master1.kr/tests/love-language';
 const testGrid=$('#testGrid');
-if(testGrid)testGrid.replaceChildren(...TESTS.map((t,i)=>{const self=i===8,love=i===0;const b=(self||love)?el('a','test'+(love?' test-live':'')):el('button','test');if(self)b.href='profiling.html#sp-change';else if(love){b.href=LOVE_URL;b.target='_blank';b.rel='noopener'}else{b.type='button';b.dataset.need='2';b.dataset.test=t[0]}
+if(testGrid)testGrid.replaceChildren(...TESTS.map((t,i)=>{const self=i===8,love=i===0;const b=(self||love)?el('a','test'+(love?' test-live':'')):el('button','test');if(self)b.href='profiling#sp-change';else if(love){b.href=LOVE_URL;b.target='_blank';b.rel='noopener'}else{b.type='button';b.dataset.need='2';b.dataset.test=t[0]}
  b.append(el('span','no',String(i+1).padStart(2,'0')));const d=el('div');const h=el('h4',null,t[0]);if(t[1])h.append(el('i',i===0?'live':null,t[1]));d.append(h,el('p',null,t[2]),el('span','pill',t[3]+' · '+(self?'프로그램 보기 →':love?'지금 검사하기 ↗':'검사 신청 ↗')));b.append(d);return b}));
 
 /* 진술 예시 밑줄 (진술분석 페이지) */
@@ -295,7 +295,7 @@ if(smsBtn){
   $('#copy-status').textContent='메일 창이 열리지 않으면 "문의 내용 복사"를 누른 뒤 '+MAIL+'으로 보내 주세요.'};
 }
 $('#copy-inquiry').onclick=async()=>{try{await navigator.clipboard.writeText($('#inquiry-output').value);$('#copy-status').textContent='복사했습니다. 아래 연락처로 보내 주세요.'}catch(err){const ta=$('#inquiry-output');ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}$('#copy-status').textContent=ok?'복사했습니다. 아래 연락처로 보내 주세요.':'선택된 내용을 길게 눌러 복사해 주세요.'}};
- /* 다른 페이지에서 contact.html#need-1 처럼 오면 그 항목으로 창을 엽니다 */
+ /* 다른 페이지에서 contact#need-1 처럼 오면 그 항목으로 창을 엽니다 */
  const m=/^#need-(\d)$/.exec(location.hash);if(m&&NEEDS[+m[1]])openInquiry(+m[1]);
 }
 /* 떠 있는 상담·의뢰 버튼: 페이지 머리가 보이는 동안은 숨김 */
