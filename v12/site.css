@@ -952,3 +952,8 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .rp-list{list-style:none;margin:0;padding:0;display:grid;gap:2.6cqw;font-size:3.05cqw;line-height:1.5;color:var(--ink)}
 .rp-list b{display:block;font-family:var(--serif);font-weight:700;font-size:1.15em;color:#7a4a1e}
 .rp-list span{display:block;padding-left:1.2em;color:#4a3a2c}
+
+/* 목차: 아래 빈 곳까지 넉넉하게 펼침 (2026-11-11 남덕 님) */
+.rep-toc{padding-bottom:9%}
+.rep-toc .rp-list{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:0;font-size:3.25cqw;line-height:1.75}
+.rep-toc .rp-list b{margin-bottom:.6cqw}
