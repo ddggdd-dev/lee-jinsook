@@ -966,3 +966,11 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .rep-fields{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 .rep-fields li small{margin-top:4px}
 @media(max-width:720px){.rep-fields{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px}.rep-fields li{font-size:14px;padding:10px 6px}.rep-fields li small{font-size:12px}}
+
+/* 분야 칸(2026-11-12 남덕 님 표 2): 사건 | 업무상 재해·순직, 공상해(한 칸, 설명 공유) | 재범 위험성평가 */
+.rep-fields{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.rep-fields li.wide{grid-column:span 2}
+.rep-fields li .two{display:flex;justify-content:center;gap:0;width:100%}
+.rep-fields li .two span{flex:1;text-align:center}
+.rep-fields li .two span+span{border-left:1px solid rgba(227,189,124,.45)}
+@media(max-width:720px){.rep-fields{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px}.rep-fields li{font-size:13px;padding:10px 4px}.rep-fields li small{font-size:11.5px}}
