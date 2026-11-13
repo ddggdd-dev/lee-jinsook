@@ -281,7 +281,7 @@ if(inqDlg&&kindSel&&ctxSel){
  $('#inquiry-form').onsubmit=e=>e.preventDefault();
  /* 보내기 (2026-11-07 남덕 님 1안): 휴대폰 = 이진숙 소장 휴대폰(010-3365-7464)으로 보낼 문자 창이 내용 채운 채로 열림,
     컴퓨터 = 문자를 보낼 수 없으므로 같은 버튼이 '이메일로 보내기'가 되어 제목·내용이 채워진 메일 창이 열림 */
-const smsBtn=$('#sms-inquiry'),MAIL='moon.profiling@gmail.com',SMS_TO='01033657464';
+const smsBtn=$('#sms-inquiry'),MAIL='moonprofiling@gmail.com',SMS_TO='01033657464';
 const isMobile=/Android|iPhone|iPod|Mobile/i.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
 const sendBody=()=>$('#inquiry-output')?.value||'[이진숙 프로파일링 연구소 문의]';
 if(smsBtn){
