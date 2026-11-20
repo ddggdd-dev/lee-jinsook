@@ -1048,3 +1048,10 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .post.framed{padding:12px;border:1.5px solid #c99e5e;border-radius:14px;background:linear-gradient(180deg,#fffaf0,#f3e6cf);box-shadow:0 14px 30px -18px rgba(42,26,15,.45)}
 .post.framed .ph{border:8px solid #2a1a0f;outline:1px solid #c99e5e;outline-offset:-4px;border-radius:6px;overflow:hidden}
 .post.framed .meta{color:#7a4a1e;font-weight:700}
+
+/* 심리부검 '필요한 경우': 사진을 오른쪽 칸 위·아래 끝에 맞춤 (2026-11-20 남덕 님) */
+@media(min-width:901px){
+ #pa-cases .pa-split{align-items:stretch}
+ #pa-cases .pa-ph{height:100%}
+ #pa-cases .pa-ph img{aspect-ratio:auto;height:100%}
+}
