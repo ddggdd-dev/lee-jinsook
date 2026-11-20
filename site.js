@@ -84,6 +84,50 @@ const POSTS=[
   }
  },
  {
+  "title": "21년 차 프로파일러 이진숙, 왜 유튜브를 열었나?",
+  "date": "",
+  "category": "방송",
+  "label": "유튜브 강의",
+  "frame": true,
+  "summary": "21년 차 프로파일러 이진숙 소장이 유튜브 채널을 연 이유를 직접 이야기합니다.",
+  "body": [
+   "21년 차 프로파일러 이진숙 소장이 유튜브 채널을 연 이유를 직접 이야기합니다.",
+   "영상: 「이진숙의 찐 프로파일러」 유튜브"
+  ],
+  "image": {
+   "src": "https://i.ytimg.com/vi/MMl4z-wnb2s/hqdefault.jpg",
+   "alt": "21년 차 프로파일러 이진숙, 왜 유튜브를 열었나? 영상",
+   "note": "▶ 영상"
+  },
+  "video": "MMl4z-wnb2s",
+  "link": {
+   "url": "https://www.youtube.com/watch?v=MMl4z-wnb2s",
+   "text": "유튜브에서 보기"
+  }
+ },
+ {
+  "title": "인천 구월동 칼부림 사건은 끝나지 않았다 — 이상동기 범죄, 막을 수 있을까?",
+  "date": "",
+  "category": "방송",
+  "label": "유튜브 강의",
+  "frame": true,
+  "summary": "인천 구월동 칼부림 사건을 다시 짚으며, 이상동기 범죄를 막을 수 있는지 이야기합니다.",
+  "body": [
+   "인천 구월동 칼부림 사건을 다시 짚으며, 이상동기 범죄를 막을 수 있는지 이야기합니다.",
+   "영상: 「이진숙의 찐 프로파일러」 유튜브"
+  ],
+  "image": {
+   "src": "https://i.ytimg.com/vi/Iv4n6KHF5r0/hqdefault.jpg",
+   "alt": "인천 구월동 칼부림 사건은 끝나지 않았다 — 이상동기 범죄, 막을 수 있을까? 영상",
+   "note": "▶ 영상"
+  },
+  "video": "Iv4n6KHF5r0",
+  "link": {
+   "url": "https://www.youtube.com/watch?v=Iv4n6KHF5r0",
+   "text": "유튜브에서 보기"
+  }
+ },
+ {
   "title": "tvN 「유 퀴즈 온 더 블럭」 출연",
   "date": "2020-12",
   "category": "방송",
@@ -210,9 +254,9 @@ if(PROD)for(let i=POSTS.length-1;i>=0;i--)if(/예시/.test(POSTS[i].label||''))P
 const CATS=['전체','블로그','소식','칼럼','사례','강연','방송','출간'];
 const EMPTY={'소식':{img:'img/ref-v3-1.jpg',title:'연구소 소식을 올립니다',text:'소식 — 확인 후'},'사례':{img:'img/ref-v3-2.jpg',title:'공개에 동의받은 사례를 정리해 올립니다',text:'사례 글 — 소장님 확인 후'},'강연':{img:'img/ref-v3-4.jpg',title:'강연·교육 소식을 올립니다',text:'강연 소식 — 소장님 확인 후'},'방송':{img:'img/ref-f-desk.jpg',title:'방송·언론 소식을 올립니다',text:'방송 소식 — 확인 후'},'칼럼':{img:'img/ref-f-docs2.jpg',title:'칼럼을 올립니다',text:'칼럼 — 소장님 확인 후'},'출간':{img:'img/ref-f-report.jpg',title:'출간 소식을 올립니다',text:'출간 소식 — 확인 후'}};
 const fmtDate=d=>{if(!d)return'예시 글';const [y,m,dd]=d.split('-');return y+'년 '+(+m)+'월'+(dd?' '+(+dd)+'일':'')};
-const byDate=(a,b)=>(b[0].date||'').localeCompare(a[0].date||'');
+const byDate=(a,b)=>(!!b[0].frame-!!a[0].frame)||(b[0].date||'').localeCompare(a[0].date||''); /* 액자 카드(유튜브 강의)는 맨 앞 */
 function thumb(src,alt,note,label,pos){if(!src){const t=el('div','ph ph-text');t.append(el('span',null,label||''));return t}const p=el('div','ph');const im=el('img');im.src=src;if(pos)im.style.objectPosition=pos;im.alt=alt||'';im.loading='lazy';p.append(im);if(note)p.append(el('span','note-img',note));return p}
-function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title,p.image?.pos),el('span','meta',(p.label||p.category)+(p.date?' · '+fmtDate(p.date):'')),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
+function card(p,idx){const b=el('button','post'+(p.frame?' framed':''));b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title,p.image?.pos),el('span','meta',(p.label||p.category)+(p.date?' · '+fmtDate(p.date):'')),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
 function emptyCard(cat){const e=EMPTY[cat];const d=el('div','post empty');const p=el('p');p.append(el('span','blank',e.text));d.append(thumb(e.img,'',false),el('span','meta',cat),el('h3',null,e.title),p);return d}
 const postDlg=$('#post-dialog');
 if(postDlg)postDlg.addEventListener('close',()=>postDlg.querySelectorAll('.video').forEach(v=>v.remove()));
@@ -265,7 +309,8 @@ const NEEDS=[
  {t:'개인상담·코칭을 받고 싶습니다',to:'상담',svc:'전문가 상담 예약',d:'관계·갈등·자기이해 주제의 1:1 상담입니다.',label:'상담 주제',opts:['아직 잘 모르겠습니다','검사 해석 상담','관계·갈등 상담','1:1 전문가 상담']},
  {t:'기업·기관 강연이 필요합니다',to:'강연',svc:'기업·기관 강연 문의',d:'대상·인원·일정을 알려 주시면 강연안을 보내 드립니다.',label:'참여 대상',opts:['아직 정해지지 않았습니다','기업 CEO·임원','공공기관 리더·관리자','법률·조사 실무자','그 외']},
  {t:'직원교육이 필요합니다',to:'교육',svc:'직원교육 문의',d:'진술분석·면담기법·리더십 과정을 맞춤 설계합니다.',label:'교육 주제',opts:['아직 정해지지 않았습니다','진술분석','면담·질문기법','리더십','프로파일링 아카데미 개설 소식']},
- {t:'기업 내부 사건을 분석하고 싶습니다',to:'기업',svc:'기업 내부조사 프로젝트',d:'면담 설계와 진술 분석을 프로젝트로 진행합니다.',label:'자료 형태',opts:['아직 잘 모르겠습니다','면담·인터뷰','진술서·서면','녹취·메시지','그 외']}
+ {t:'기업 내부 사건을 분석하고 싶습니다',to:'기업',svc:'기업 내부조사 프로젝트',d:'면담 설계와 진술 분석을 프로젝트로 진행합니다.',label:'자료 형태',opts:['아직 잘 모르겠습니다','면담·인터뷰','진술서·서면','녹취·메시지','그 외']},
+ {t:'심리부검이 필요합니다',to:'심리부검',svc:'심리부검 의뢰',d:'사건 경위와 의뢰 목적, 확보된 자료를 확인한 뒤 분석 가능 여부와 범위를 협의합니다.',label:'문의 유형',opts:['아직 잘 모르겠습니다','자살 가능성 평가','자살 영향요인·동기 분석','분석 범위 상담']}
 ];
 $$('[data-needs]').forEach(box=>NEEDS.forEach((n,i)=>{const b=el('button');b.type='button';b.dataset.need=i;b.append(el('span',null,n.t),el('small',null,n.to+' ↗'));box.append(b)}));
 const inqDlg=$('#inquiry-dialog'),kindSel=$('#inquiry-kind'),ctxSel=$('#inquiry-context');
@@ -308,3 +353,10 @@ const sampleBtn=$('#sample-open'),sampleDlg=$('#sample-dialog');
 if(sampleBtn&&sampleDlg)sampleBtn.onclick=()=>sampleDlg.showModal();
 $$('dialog .close').forEach(b=>b.onclick=()=>b.closest('dialog').close());
 $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}}));
+
+/* 진술분석 · 심리부검 탭 (2026-11-19 남덕 님): #pa-… 주소나 #autopsy 로 오면 심리부검 탭 */
+(()=>{const btns=$$('[data-tab]');if(!btns.length)return;const lead=$('#ph-lead');
+ const show=(name,scroll)=>{btns.forEach(b=>{const on=b.dataset.tab===name;b.setAttribute('aria-selected',on);b.classList.toggle('on',on);const p=$('#tab-'+b.dataset.tab);if(p)p.hidden=!on;if(on&&lead)lead.textContent=b.dataset.lead});if(scroll)$('.pa-tabs').scrollIntoView({block:'start'})};
+ btns.forEach(b=>b.addEventListener('click',()=>{show(b.dataset.tab);history.replaceState(null,'',b.dataset.tab==='autopsy'?'#autopsy':location.pathname)}));
+ const fromHash=()=>{const h=decodeURIComponent(location.hash.slice(1));if(!h)return;if(h==='autopsy'){show('autopsy',true);return}const t=document.getElementById(h);const p=t&&t.closest('[role=tabpanel]');if(p){show(p.id.replace('tab-',''));t.scrollIntoView()}};
+ addEventListener('hashchange',fromHash);fromHash();})();
