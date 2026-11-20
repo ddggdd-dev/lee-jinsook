@@ -1043,3 +1043,8 @@ main h1{font-family:'BM Hanna Pro',var(--serif,serif)!important;font-weight:400!
 .pa-contact .eyebrow{background:rgba(255,255,255,.14);border-color:#f6dfd4;color:#fff4ea!important}
 .pa-contact .pa-contact-acts a{color:var(--white);border-bottom:1px solid #f1c7b4}
 @media(max-width:900px){.pa-contact{grid-template-columns:1fr}}
+
+/* 인사이트 유튜브 강의 카드: 액자·테두리 (2026-11-20 남덕 님) */
+.post.framed{padding:12px;border:1.5px solid #c99e5e;border-radius:14px;background:linear-gradient(180deg,#fffaf0,#f3e6cf);box-shadow:0 14px 30px -18px rgba(42,26,15,.45)}
+.post.framed .ph{border:8px solid #2a1a0f;outline:1px solid #c99e5e;outline-offset:-4px;border-radius:6px;overflow:hidden}
+.post.framed .meta{color:#7a4a1e;font-weight:700}

@@ -84,6 +84,50 @@ const POSTS=[
   }
  },
  {
+  "title": "21년 차 프로파일러 이진숙, 왜 유튜브를 열었나?",
+  "date": "",
+  "category": "방송",
+  "label": "유튜브 강의",
+  "frame": true,
+  "summary": "21년 차 프로파일러 이진숙 소장이 유튜브 채널을 연 이유를 직접 이야기합니다.",
+  "body": [
+   "21년 차 프로파일러 이진숙 소장이 유튜브 채널을 연 이유를 직접 이야기합니다.",
+   "영상: 「이진숙의 찐 프로파일러」 유튜브"
+  ],
+  "image": {
+   "src": "https://i.ytimg.com/vi/MMl4z-wnb2s/hqdefault.jpg",
+   "alt": "21년 차 프로파일러 이진숙, 왜 유튜브를 열었나? 영상",
+   "note": "▶ 영상"
+  },
+  "video": "MMl4z-wnb2s",
+  "link": {
+   "url": "https://www.youtube.com/watch?v=MMl4z-wnb2s",
+   "text": "유튜브에서 보기"
+  }
+ },
+ {
+  "title": "인천 구월동 칼부림 사건은 끝나지 않았다 — 이상동기 범죄, 막을 수 있을까?",
+  "date": "",
+  "category": "방송",
+  "label": "유튜브 강의",
+  "frame": true,
+  "summary": "인천 구월동 칼부림 사건을 다시 짚으며, 이상동기 범죄를 막을 수 있는지 이야기합니다.",
+  "body": [
+   "인천 구월동 칼부림 사건을 다시 짚으며, 이상동기 범죄를 막을 수 있는지 이야기합니다.",
+   "영상: 「이진숙의 찐 프로파일러」 유튜브"
+  ],
+  "image": {
+   "src": "https://i.ytimg.com/vi/Iv4n6KHF5r0/hqdefault.jpg",
+   "alt": "인천 구월동 칼부림 사건은 끝나지 않았다 — 이상동기 범죄, 막을 수 있을까? 영상",
+   "note": "▶ 영상"
+  },
+  "video": "Iv4n6KHF5r0",
+  "link": {
+   "url": "https://www.youtube.com/watch?v=Iv4n6KHF5r0",
+   "text": "유튜브에서 보기"
+  }
+ },
+ {
   "title": "tvN 「유 퀴즈 온 더 블럭」 출연",
   "date": "2020-12",
   "category": "방송",
@@ -210,9 +254,9 @@ if(PROD)for(let i=POSTS.length-1;i>=0;i--)if(/예시/.test(POSTS[i].label||''))P
 const CATS=['전체','블로그','소식','칼럼','사례','강연','방송','출간'];
 const EMPTY={'소식':{img:'img/ref-v3-1.jpg',title:'연구소 소식을 올립니다',text:'소식 — 확인 후'},'사례':{img:'img/ref-v3-2.jpg',title:'공개에 동의받은 사례를 정리해 올립니다',text:'사례 글 — 소장님 확인 후'},'강연':{img:'img/ref-v3-4.jpg',title:'강연·교육 소식을 올립니다',text:'강연 소식 — 소장님 확인 후'},'방송':{img:'img/ref-f-desk.jpg',title:'방송·언론 소식을 올립니다',text:'방송 소식 — 확인 후'},'칼럼':{img:'img/ref-f-docs2.jpg',title:'칼럼을 올립니다',text:'칼럼 — 소장님 확인 후'},'출간':{img:'img/ref-f-report.jpg',title:'출간 소식을 올립니다',text:'출간 소식 — 확인 후'}};
 const fmtDate=d=>{if(!d)return'예시 글';const [y,m,dd]=d.split('-');return y+'년 '+(+m)+'월'+(dd?' '+(+dd)+'일':'')};
-const byDate=(a,b)=>(b[0].date||'').localeCompare(a[0].date||'');
+const byDate=(a,b)=>(!!b[0].frame-!!a[0].frame)||(b[0].date||'').localeCompare(a[0].date||''); /* 액자 카드(유튜브 강의)는 맨 앞 */
 function thumb(src,alt,note,label,pos){if(!src){const t=el('div','ph ph-text');t.append(el('span',null,label||''));return t}const p=el('div','ph');const im=el('img');im.src=src;if(pos)im.style.objectPosition=pos;im.alt=alt||'';im.loading='lazy';p.append(im);if(note)p.append(el('span','note-img',note));return p}
-function card(p,idx){const b=el('button','post');b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title,p.image?.pos),el('span','meta',(p.label||p.category)+(p.date?' · '+fmtDate(p.date):'')),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
+function card(p,idx){const b=el('button','post'+(p.frame?' framed':''));b.type='button';b.append(thumb(p.image?.src,p.image?.alt,p.image?.note,p.title,p.image?.pos),el('span','meta',(p.label||p.category)+(p.date?' · '+fmtDate(p.date):'')),el('h3',null,p.title),el('p',null,p.summary||''),el('span','read','읽기 →'));b.onclick=()=>openPost(idx);return b}
 function emptyCard(cat){const e=EMPTY[cat];const d=el('div','post empty');const p=el('p');p.append(el('span','blank',e.text));d.append(thumb(e.img,'',false),el('span','meta',cat),el('h3',null,e.title),p);return d}
 const postDlg=$('#post-dialog');
 if(postDlg)postDlg.addEventListener('close',()=>postDlg.querySelectorAll('.video').forEach(v=>v.remove()));
