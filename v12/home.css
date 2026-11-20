@@ -390,3 +390,6 @@ ol,ul{padding:0;list-style:none}
 .k{display:inline-flex!important;align-items:center;min-height:40px;padding:5px 18px;border-radius:999px;border:1.5px solid #e3bd7c;background:rgba(227,189,124,.14);color:#f3dcb0!important;font-size:16px!important;font-weight:700!important;letter-spacing:.08em!important;line-height:1.2}
 .doors .k,.dest2 .k{border-color:#c99e5e;background:#f3e6cf;color:#7a4a1e!important}
 @media(max-width:720px){.k{font-size:15px!important;min-height:38px;padding:4px 14px}}
+/* 행선지 배너 30% 작게, 가운데 (2026-11-20 남덕 님) */
+.d2-banner{width:70%;justify-self:center;margin-left:auto;margin-right:auto}
+@media(max-width:720px){.d2-banner{width:100%}}
